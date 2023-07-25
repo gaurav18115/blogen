@@ -1,6 +1,7 @@
 import datetime
 import os
 import sys
+import re
 
 from tools.logger import log_info
 
@@ -27,11 +28,14 @@ def append_content_to_file(filename, new_content, st=None):
         file.write("\n\n" + new_content)
 
 
-def create_file_with_keyword(keyword, directory="_blogs", extension="md"):
+def create_file_with_keyword(keywords, directory="_blogs", extension="md"):
     if not os.path.exists(directory):
         os.makedirs(directory)
 
-    title = '_'.join(keyword.split(' '))
+    processed_keywords = re.sub(r'[^\w\s]', ' ', keywords)
+    processed_keywords = processed_keywords.strip().lower()
+
+    title = '_'.join(processed_keywords.split(' '))
     subdirectory = os.path.join(directory, title)
     if not os.path.exists(subdirectory):
         os.makedirs(subdirectory)

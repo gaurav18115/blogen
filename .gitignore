@@ -3,3 +3,5 @@
 _logs
 _blogs
 venv
+
+tools/__pycache__

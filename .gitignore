@@ -4,5 +4,4 @@ _logs
 _blogs
 venv
 .xml
-
 tools/__pycache__

@@ -15,35 +15,51 @@ steps_prompts = [
     "Step 1: Given the primary keywords - {primary_keywords}, generate a captivating blog title."
     "Followed with an introduction in {tone_of_writing} tone. "
     "Something that creates curiosity and willingness to read more in reader's mind."
-    "Use maximum 150 words for the content.",
+    "Use maximum 150 words for the content."
+    "Make sure to write in pure markdown format, with headings and subheadings (H1 to H4), "
+    "paragraphs, lists and text formating (such as bold, italic, strikethrough, etc).",
     # Step 2
     "Step 2: On the basis of the user intent for asking {primary_keywords} and write the structure of this blog. "
     "Use the {tone_of_writing} tone to give contextual awareness to the user."
-    "Use maximum 200 words for the content.",
+    "Use maximum 200 words for the content."
+    "Make sure to write in pure markdown format, with headings and subheadings (H1 to H4), "
+    "paragraphs, lists and text formating (such as bold, italic, strikethrough, etc).",
     # Step 3
     "Step 3: On the basis of the user intent for asking {primary_keywords}, set up a base ground of knowledge. "
     "Write facts and theories on this topic, add well-known data points and sources here."
-    "Use maximum 250 words for the content.",
+    "Use maximum 250 words for the content."
+    "Make sure to write in pure markdown format, with headings and subheadings (H1 to H4), "
+    "paragraphs, lists and text formating (such as bold, italic, strikethrough, etc).",    
     # Step 4
     "Step 4: On the basis of the user intent for asking {primary_keywords}, describe the problem the user is facing "
     "and give your solution for it. The solution could be either be a process or a product or a service."
-    "Use maximum 300 words for the content.",
+    "Use maximum 300 words for the content."
+    "Make sure to write in pure markdown format, with headings and subheadings (H1 to H4), "
+    "paragraphs, lists and text formating (such as bold, italic, strikethrough, etc).",
     # Step 5
     "Step 5: Demostrate the solution we are providing is the best solution. "
     "Estimate the best use case or application where this solution fits well."
     "Provide other substitutes which optimizes money and time."
-    "Use maximum 250 words for the content.",
+    "Use maximum 250 words for the content."
+    "Make sure to write in pure markdown format, with headings and subheadings (H1 to H4), "
+    "paragraphs, lists and text formating (such as bold, italic, strikethrough, etc).",
     # Step 6
     "Step 6: This is optional. If there are pros and cons to certain options, "
     "then list those items. Change the heading with positive and negative phrases"
-    "Use maximum 250 words for the content.",
+    "Use maximum 250 words for the content."
+    "Make sure to write in pure markdown format, with headings and subheadings (H1 to H4), "
+    "paragraphs, lists and text formating (such as bold, italic, strikethrough, etc).",
     # Step 7
     "Step 7: If applicable, demonstrate how to use our solution in easy steps."
-    "Use maximum 250 words for the content.",
+    "Use maximum 250 words for the content."
+    "Make sure to write in pure markdown format, with headings and subheadings (H1 to H4), "
+    "paragraphs, lists and text formating (such as bold, italic, strikethrough, etc).",
     # Step 8
     "Step 8: Generate a conclusion based on the content of this blog. Use {tone_of_writing} tone to"
     "ease the user intent to take the next step on {primary_keywords}. Express a quick thanks with a positive footnote."
-    "Use maximum 200 words for the content.",
+    "Use maximum 200 words for the content."
+    "Make sure to write in pure markdown format, with headings and subheadings (H1 to H4), "
+    "paragraphs, lists and text formating (such as bold, italic, strikethrough, etc).",
 ]
 
 

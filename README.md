@@ -48,7 +48,11 @@ To get started with BLOGEN, follow these steps:
    
 6. Launch the BLOGEN application:
    ```
-   python blog_gen_algo_v0.1.py
+   python blog_gen_algo_v0.1.py [keyword]
+   ```
+Alternatively use Streamlit for a browser interface:
+   ```
+   streamlit run blog_gen_algo_v0.1.py [keyword]
    ```
 
 ## Usage

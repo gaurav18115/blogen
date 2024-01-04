@@ -26,3 +26,9 @@ OPENAI_STOP_SEQ = os.getenv('OPENAI_STOP_SEQ', '\n')
 
 SERP_API_KEY = os.getenv('SERP_API_KEY', 'empty-string')
 
+SERVICE_NAME = os.getenv('SERVICE_NAME', 'Emilio')
+SERVICE_DESCRIPTION = os.getenv('SERVICE_DESCRIPTION', "an AI-powered email client designed to enhance email management by automating tasks and providing advanced features that save users time."
+                                "The key functionalities include sorting prioritized emails, summarizing messages, drafting emails with the user's tone, and requiring no installation as it operates in the background."
+                                "The service integrates with the user's existing email account, starting with Google accounts, and focuses on user privacy and support.")
+SERVICE_URL = os.getenv('SERVICE_URL', 'https://getemil.io/')
+

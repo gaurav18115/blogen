@@ -51,7 +51,7 @@ def create_file_with_keyword(keywords, directory="_blogs", extension="md"):
     filepath = os.path.join(subdirectory, filename)
 
     # Create the new file
-    with open(filepath, "w") as file:
-        file.write(f"Runtime: {datetime.datetime.now()}")
+    #with open(filepath, "w") as file:
+    #    file.write(f"Runtime: {datetime.datetime.now()}")
 
     return filepath

@@ -3,13 +3,15 @@
 BLOGEN is a blog generation application designed to create well-structured blog posts using Markdown formatting. It takes primary keywords as input and generates engaging and informative blog content for various topics. This README file provides an overview of the BLOGEN application and instructions for usage.
 
 ## Table of Contents
-- [Introduction](#introduction)
-- [Features](#features)
-- [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Dependencies](#dependencies)
-- [Contributing](#contributing)
-- [License](#license)
+- [BLOGEN - Blog Generation Application (Version 0.1)](#blogen---blog-generation-application-version-01)
+  - [Table of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [Features](#features)
+  - [Getting Started](#getting-started)
+  - [Usage](#usage)
+  - [Dependencies](#dependencies)
+  - [Contributing](#contributing)
+  - [License](#license)
 
 ## Introduction
 BLOGEN is a Python-based blog generation tool that leverages the power of GPT-3.5 (OpenAI's language model) to create captivating blog posts. The application uses the primary keywords provided by the user to generate prompts and interactively calls the language model to produce content for each step of the blog creation process.
@@ -36,14 +38,15 @@ To get started with BLOGEN, follow these steps:
 
 3. Obtain an API key for the GPT-3.5 language model from OpenAI and save it in a secure manner.
 
-4. Set your API key as an environment variable:
+4. Obtain an API key for [SerpAPI](serpapi.com), the free version includes 100 searches/month.
+
+5. Set your API key as an environment variable:
    ```
    export OPENAI_API_KEY=your_api_key
    export SERP_API_KEY=your_api_key
    ```
    
-
-5. Launch the BLOGEN application:
+6. Launch the BLOGEN application:
    ```
    python blog_gen_algo_v0.1.py
    ```

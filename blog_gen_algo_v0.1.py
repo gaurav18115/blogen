@@ -130,9 +130,11 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
                 prompt = better_prompt
 
         # Add image
-        image_content, already_sourced = get_image_with_commercial_usage(primary_keywords, prompt, already_sourced)
-        if image_content:
-            append_content_to_file(filepath, image_content, st if CLI else None)
+        add_image = False
+        if add_image:
+            image_content, already_sourced = get_image_with_commercial_usage(primary_keywords, prompt, already_sourced)
+            if image_content:
+                append_content_to_file(filepath, image_content, st if CLI else None)
 
         # Add News
         news_data = require_data_for_prompt(primary_keywords, prompt)
@@ -148,7 +150,7 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
         i += 1
         total_words += len(response.split(" "))
 
-    footer_message = f"🎁  Finished generation at {datetime.datetime.now()}. 📬  Total words: {total_words}"
+    #footer_message = f"🎁  Finished generation at {datetime.datetime.now()}. 📬  Total words: {total_words}"
     #append_content_to_file(filepath, footer_message, st if CLI else None)
     
     # Read the generated content

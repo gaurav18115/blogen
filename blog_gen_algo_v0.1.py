@@ -2,6 +2,7 @@ import datetime
 import sys
 
 import streamlit as st
+from md_toc import build_toc
 
 from tools.chatgpt import chat_with_open_ai
 from tools.decision import require_data_for_prompt, require_better_prompt, find_tone_of_writing
@@ -125,7 +126,22 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery"):
         total_words += len(response.split(" "))
 
     footer_message = f"🎁  Finished generation at {datetime.datetime.now()}. 📬  Total words: {total_words}"
-    append_content_to_file(filepath, footer_message, st if CLI else None)
+    #append_content_to_file(filepath, footer_message, st if CLI else None)
+    
+    # Read the generated content
+    with open(filepath, 'r') as file:
+        content = file.read()
+
+    # Generate ToC
+    toc = build_toc(filepath)
+
+    # Insert ToC at the beginning of the content
+    content_with_toc = toc + "\n\n" + content
+
+    # Rewrite the file with ToC
+    with open(filepath, 'w') as file:
+        file.write(content_with_toc)
+
 
 
 def run_streamlit_app():

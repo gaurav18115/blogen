@@ -50,7 +50,7 @@ To get started with BLOGEN, follow these steps:
    ```
    python blog_gen_algo_v0.1.py [keyword]
    ```
-6. Alternatively use Streamlit for a browser interface:
+7. Alternatively use Streamlit for a browser interface:
    ```
    streamlit run blog_gen_algo_v0.1.py [keyword]
    ```

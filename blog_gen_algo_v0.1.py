@@ -37,25 +37,25 @@ steps_prompts = [
     "Step 3: On the basis of the user intent for asking {primary_keywords}, describe the problem the user is facing "
     "and give several solutions for it. The solutions cam be either be a process or a product or a service."
     "Use maximum 300 words for the content. Don't reach any conclusion yet."
-    "Make sure to write in pure markdown format, with headings and subheadings (H1 to H4), "
+    "Make sure to write in pure markdown format, with headings and subheadings (H2 to H3), "
     "paragraphs, lists and text formating (such as bold, italic, strikethrough, etc).",
     # Step 4
     "Step 4: Introduce {service_name}, {service_description}"
     "Explain to the user how {service_name} can help them with their problem. "
     "Make sure to link {service_url} in the content. "
     "Use maximum 100 words for the content. Don't reach any conclusion yet. "
-    "Make sure to write in pure markdown format, with headings and subheadings (H1 to H4), "
+    "Make sure to write in pure markdown format, with headings and subheadings (H2 to H3), "
     "paragraphs, lists and text formating (such as bold, italic, strikethrough, etc).",
     # Step 5
     "Step 5: If applicable, demonstrate how to use {service_name} in easy steps. Don't go beyond what is mentioned in the service description: {service_description}. "
     "Use maximum 100 words for the content. Don't reach any conclusion yet. "
-    "Make sure to write in pure markdown format, with headings and subheadings (H1 to H4), "
+    "Make sure to write in pure markdown format, with headings and subheadings (H2 to H3), "
     "paragraphs, lists and text formating (such as bold, italic, strikethrough, etc).",
     # Step 6
     "Step 6: Generate a conclusion based on the content of this blog. Use {tone_of_writing} tone to"
     "ease the user intent to take the next step on {primary_keywords}. "
     "Use maximum 150 words for the content."
-    "Make sure to write in pure markdown format, with headings and subheadings (H1 to H4), "
+    "Make sure to write in pure markdown format, with headings and subheadings (H2 to H3), "
     "paragraphs, lists and text formating (such as bold, italic, strikethrough, etc).",
 ]
 

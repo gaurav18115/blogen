@@ -47,18 +47,12 @@ steps_prompts = [
     "Make sure to write in pure markdown format, with headings and subheadings (H1 to H4), "
     "paragraphs, lists and text formating (such as bold, italic, strikethrough, etc).",
     # Step 5
-    "Step 5: This is optional. If there are pros and cons to the presented options, "
-    "then list those items. Change the heading with positive and negative phrases"
-    "Use maximum 150 words for the content. Don't reach any conclusion yet."
-    "Make sure to write in pure markdown format, with headings and subheadings (H1 to H4), "
-    "paragraphs, lists and text formating (such as bold, italic, strikethrough, etc).",
-    # Step 6
-    "Step 6: If applicable, demonstrate how to use {service_name} in easy steps. Don't go beyond what is mentioned in the service description: {service_description}. "
+    "Step 5: If applicable, demonstrate how to use {service_name} in easy steps. Don't go beyond what is mentioned in the service description: {service_description}. "
     "Use maximum 100 words for the content. Don't reach any conclusion yet. "
     "Make sure to write in pure markdown format, with headings and subheadings (H1 to H4), "
     "paragraphs, lists and text formating (such as bold, italic, strikethrough, etc).",
-    # Step 7
-    "Step 7: Generate a conclusion based on the content of this blog. Use {tone_of_writing} tone to"
+    # Step 6
+    "Step 6: Generate a conclusion based on the content of this blog. Use {tone_of_writing} tone to"
     "ease the user intent to take the next step on {primary_keywords}. "
     "Use maximum 150 words for the content."
     "Make sure to write in pure markdown format, with headings and subheadings (H1 to H4), "

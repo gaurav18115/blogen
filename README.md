@@ -38,7 +38,7 @@ To get started with BLOGEN, follow these steps:
 
 3. Obtain an API key for the GPT-3.5 language model from OpenAI and save it in a secure manner.
 
-4. Obtain an API key for [SerpAPI](serpapi.com), the free version includes 100 searches/month.
+4. Obtain an API key for [SerpAPI](https://serpapi.com/), the free version includes 100 searches/month.
 
 5. Set your API key as an environment variable:
    ```

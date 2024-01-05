@@ -1,68 +1,80 @@
-<?xml version="1.0" encoding="UTF-8"?>
-            <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url>
-        <loc>https://getemil.io/</loc>
-        <lastmod>2023-12-22T13:33:10+01:00</lastmod>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://getemil.io/about-us/</loc>
-        <lastmod>2023-12-22T13:33:10+01:00</lastmod>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://getemil.io/blog/</loc>
-        <lastmod>2023-12-22T13:33:10+01:00</lastmod>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://getemil.io/blog/the-ultimate-guide-to-managing-your-email/</loc>
-        <lastmod>2023-12-22T13:33:13+01:00</lastmod>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://getemil.io/blog/unveiling-emilio-the-ultimate-ai-assistant-for-gmail/</loc>
-        <lastmod>2023-12-22T13:33:13+01:00</lastmod>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://getemil.io/blog/a-comprehensive-guide-to-todays-email-platforms/</loc>
-        <lastmod>2023-12-22T13:33:13+01:00</lastmod>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://getemil.io/blog/beyond-superhuman-emilio-the-smart-email-management-solution/</loc>
-        <lastmod>2023-12-22T13:33:13+01:00</lastmod>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://getemil.io/blog/mastering-the-art-of-inbox-zero/</loc>
-        <lastmod>2023-12-22T13:33:13+01:00</lastmod>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://getemil.io/blog/boost-your-email-productivity-with-emilio/</loc>
-        <lastmod>2023-12-22T13:33:13+01:00</lastmod>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://getemil.io/blog/the-rise-of-email-assistants-revolutionizing-your-inbox-experience/</loc>
-        <lastmod>2023-12-22T13:33:13+01:00</lastmod>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://getemil.io/blog/effortlessly-organize-emails-with-powerful-management-software/</loc>
-        <lastmod>2023-12-22T13:33:13+01:00</lastmod>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://getemil.io/blog/the-power-of-ai-for-gmail-revolutionizing-email-communication/</loc>
-        <lastmod>2023-12-22T13:33:13+01:00</lastmod>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://getemil.io/blog/how-gen-ai-can-transform-email-management-for-heavy-users/</loc>
-        <lastmod>2023-12-22T13:33:13+01:00</lastmod>
-        <priority>0.6</priority>
-    </url>
-    </urlset>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url>
+<loc>https://getemil.io/</loc>
+</url>
+<url>
+<loc>https://getemil.io/about-us/</loc>
+</url>
+<url>
+<loc>https://getemil.io/blog/</loc>
+</url>
+<url>
+<loc>https://getemil.io/blog/a-comprehensive-guide-to-todays-email-platforms/</loc>
+</url>
+<url>
+<loc>https://getemil.io/blog/automatically-sort-emails-in-gmail-a-comprehensive-guide/</loc>
+</url>
+<url>
+<loc>https://getemil.io/blog/beyond-superhuman-emilio-the-smart-email-management-solution/</loc>
+</url>
+<url>
+<loc>https://getemil.io/blog/boost-your-email-productivity-with-emilio/</loc>
+</url>
+<url>
+<loc>https://getemil.io/blog/efficiently-manage-all-your-emails-in-one-place/</loc>
+</url>
+<url>
+<loc>https://getemil.io/blog/effortlessly-organize-emails-with-powerful-management-software/</loc>
+</url>
+<url>
+<loc>https://getemil.io/blog/email-functionality-streamlining-communication/</loc>
+</url>
+<url>
+<loc>https://getemil.io/blog/email-summarizer-essentials-for-professionals/</loc>
+</url>
+<url>
+<loc>https://getemil.io/blog/google-account-use-your-existing-email/</loc>
+</url>
+<url>
+<loc>https://getemil.io/blog/handle-email-prioritization-with-ai-assistance/</loc>
+</url>
+<url>
+<loc>https://getemil.io/blog/how-gen-ai-can-transform-email-management-for-heavy-users/</loc>
+</url>
+<url>
+<loc>https://getemil.io/blog/how-to-effectively-manage-filters-in-gmail/</loc>
+</url>
+<url>
+<loc>https://getemil.io/blog/inbox-management-tips-organize-prioritize-and-stay-productive/</loc>
+</url>
+<url>
+<loc>https://getemil.io/blog/manage-email-forwarding-efficiently/</loc>
+</url>
+<url>
+<loc>https://getemil.io/blog/manage-gmail-accounts-on-iphone-step-by-step/</loc>
+</url>
+<url>
+<loc>https://getemil.io/blog/mastering-the-art-of-inbox-zero/</loc>
+</url>
+<url>
+<loc>https://getemil.io/blog/the-power-of-ai-for-gmail-revolutionizing-email-communication/</loc>
+</url>
+<url>
+<loc>https://getemil.io/blog/the-rise-of-email-assistants-revolutionizing-your-inbox-experience/</loc>
+</url>
+<url>
+<loc>https://getemil.io/blog/the-ultimate-guide-to-managing-your-email/</loc>
+</url>
+<url>
+<loc>https://getemil.io/blog/unveiling-emilio-the-ultimate-ai-assistant-for-gmail/</loc>
+</url>
+<url>
+<loc>https://getemil.io/privacy-policy/</loc>
+</url>
+<url>
+<loc>https://getemil.io/security/</loc>
+</url>
+<url>
+<loc>https://getemil.io/terms-and-conditions/</loc>
+</url>
+</urlset>

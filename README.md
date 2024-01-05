@@ -28,7 +28,7 @@ To get started with BLOGEN, follow these steps:
 
 1. Clone the BLOGEN repository to your local machine:
    ```
-   git clone https://github.com/gaurav18115/blogen.git
+   git clone https://github.com/rbatista191/blogen.git
    ```
 
 2. Install the required dependencies (ensure you have Python 3.x installed):
@@ -36,9 +36,12 @@ To get started with BLOGEN, follow these steps:
    pip install -r requirements.txt
    ```
 
-3. Obtain an API key for the GPT-3.5 language model from OpenAI and save it in a secure manner.
+3. Create your own `.env` file based on `.env.example` and store the following
+- Obtain an API key for your preferred OpenAI GPT language model
+- Obtain an API key for [SerpAPI](https://serpapi.com/) (free version includes 100 searches/month)
+- Define your service attributes to be fed into the blog article 
 
-4. Obtain an API key for [SerpAPI](https://serpapi.com/), the free version includes 100 searches/month.
+4. Upload your sitemap to the root of the workspace with filename `sitemap.xml`
 
 5. Set your API key as an environment variable:
    ```

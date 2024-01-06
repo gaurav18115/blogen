@@ -28,7 +28,7 @@ To get started with BLOGEN, follow these steps:
 
 1. Clone the BLOGEN repository to your local machine:
    ```
-   git clone https://github.com/rbatista191/blogen.git
+   git clone https://github.com/gaurav18115/blogen.git
    ```
 
 2. Install the required dependencies (ensure you have Python 3.x installed):

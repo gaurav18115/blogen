@@ -3,5 +3,5 @@
 _logs
 _blogs
 venv
-
+sitemap.xml
 tools/__pycache__

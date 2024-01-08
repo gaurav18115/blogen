@@ -16,6 +16,9 @@ BLOGEN is a blog generation application designed to create well-structured blog 
 ## Introduction
 BLOGEN is a Python-based blog generation tool that leverages the power of GPT-3.5 (OpenAI's language model) to create captivating blog posts. The application uses the primary keywords provided by the user to generate prompts and interactively calls the language model to produce content for each step of the blog creation process.
 
+## How it works
+![LF24T35](https://github.com/rbatista191/blogen/assets/138892976/421f58a7-3291-4a92-886f-99e287f905ba)
+
 ## Features
 - **Keyword-driven Content Generation**: BLOGEN accepts primary keywords as input to create blog content tailored to specific topics.
 - **Iterative Blog Building**: The application follows a step-by-step approach to create a complete blog post, including introduction, tone, issue, remedy, options, implementation, pros and cons (optional), and conclusion.

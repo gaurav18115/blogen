@@ -46,6 +46,7 @@ six==1.16.0
 smmap==5.0.0
 streamlit==1.25.0
 tenacity==8.2.2
+tokencost==0.1.2
 toml==0.10.2
 toolz==0.12.0
 tornado==6.3.2

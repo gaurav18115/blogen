@@ -43,8 +43,8 @@ steps_prompts = [
     "You will proceed to write the sixth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided.",
     # Step 9
-    "You will proceed to write the seventh point of the outline (if this point doesn't exist, simply don't respond). "
-    "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided.",
+    "You will create a conclusion paragraph and five unique FAQs after the conclusion. "
+    "The FAQs need to take the keyword into account at all times. "
     # Step 10
     "Please create a related posts section, with 3-4 articles that are relevant to this topic out of the existing blog posts described in the sitemap below: {sitemap_urls}",
 ]

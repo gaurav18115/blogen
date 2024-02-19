@@ -54,6 +54,8 @@ steps_prompts = [
     "The FAQs should have the questions bolded numbered and the answers bulleted. "
     # Step 10
     "Please create a related posts section, with 3-4 articles that are relevant to this topic out of the existing blog posts described in the sitemap below: {sitemap_urls}",
+    # Step 11
+    "Please create a meta description (100-120 characters) for the article you just generated.",
 ]
 
 def load_sitemap_and_extract_urls(sitemap_path):

@@ -26,25 +26,32 @@ steps_prompts = [
     "The second step is to write the introduction of the article. Aim at 150-200 words for the introduction.",
     # Step 3
     "You will proceed to write the first point of the outline (if this point doesn't exist, simply don't respond). "
-    "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided.",
+    "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
+    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user.",
     # Step 4
     "You will proceed to write the second point of the outline (if this point doesn't exist, simply don't respond). "
-    "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided.",
+    "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
+    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user.",
     # Step 5
     "You will proceed to write the third point of the outline (if this point doesn't exist, simply don't respond). "
-    "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided.",
+    "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
+    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user.",
     # Step 6
     "You will proceed to write the fourth point of the outline (if this point doesn't exist, simply don't respond). "
-    "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided.",
+    "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
+    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user.",
     # Step 7
     "You will proceed to write the fifth point of the outline (if this point doesn't exist, simply don't respond). "
-    "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided.",
+    "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
+    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user.",
     # Step 8
     "You will proceed to write the sixth point of the outline (if this point doesn't exist, simply don't respond). "
-    "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided.",
+    "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
+    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user.",
     # Step 9
-    "You will create a conclusion paragraph and five unique FAQs after the conclusion. "
+    "You will create a concisive conclusion paragraph and five unique FAQs after the conclusion. "
     "The FAQs need to take the keyword into account at all times. "
+    "The FAQs should have the questions bolded numbered and the answers bulleted. "
     # Step 10
     "Please create a related posts section, with 3-4 articles that are relevant to this topic out of the existing blog posts described in the sitemap below: {sitemap_urls}",
 ]

@@ -23,34 +23,43 @@ steps_prompts = [
     "You should research the web to understand what the top 5 websites for this keyword are writing about - but make sure you don not mention the websites, but the solutions they propose. " 
     "Write facts and theories on this keyword, add well-known data points and sources here.",
     # Step 2
-    "The second step is to write the introduction of the article. Aim at 150-200 words for the introduction.",
+    "The second step is to write the introduction of the article, with the appropriate Introduction H2 title. Aim at 100-150 words for the introduction. "
+    "Include at the end a bullet point table-of-contents with only the H2 titles, with a link to the respective anchor links. "
+    "Make sure to add an anchor link to every H2 title.",
     # Step 3
     "You will proceed to write the first point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user.",
+    "Make sure to add an anchor link to every H2 title. "
+    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user (but doublecheck those links first!).",
     # Step 4
     "You will proceed to write the second point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user.",
+    "Make sure to add an anchor link to every H2 title. "
+    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user (but doublecheck those links first!).",
     # Step 5
     "You will proceed to write the third point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user.",
+    "Make sure to add an anchor link to every H2 title. "
+    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user (but doublecheck those links first!).",
     # Step 6
     "You will proceed to write the fourth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user.",
+    "Make sure to add an anchor link to every H2 title. "
+    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user (but doublecheck those links first!).",
     # Step 7
     "You will proceed to write the fifth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user.",
+    "Make sure to add an anchor link to every H2 title. "
+    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user (but doublecheck those links first!).",
     # Step 8
     "You will proceed to write the sixth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user.",
+    "Make sure to add an anchor link to every H2 title. "
+    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user (but doublecheck those links first!).",
     # Step 9
     "You will create a concisive conclusion paragraph and five unique FAQs after the conclusion. "
     "The FAQs need to take the keyword into account at all times. "
+    "Make sure to add an anchor link to every H2 title. "
     "The FAQs should have the questions bolded numbered and the answers bulleted. "
     # Step 10
     "Please create a related posts section, with 3-4 articles that are relevant to this topic out of the existing blog posts described in the sitemap below: {sitemap_urls}",
@@ -147,7 +156,9 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
         completion_cost = calculate_completion_cost(response, OPENAI_MODEL)
         total_cost += prompt_cost + completion_cost
 
-        append_content_to_file(filepath, response, st if CLI else None)
+        # Don't append the response of the first step
+        if i > 1:
+            append_content_to_file(filepath, response, st if CLI else None)
         log_info(f'🔺 ️Completed Step {i}. Words: {len(response.split(" "))}')
 
         i += 1

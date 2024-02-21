@@ -58,3 +58,4 @@ urllib3==2.0.4
 validators==0.20.0
 yarl==1.9.2
 zipp==3.16.2
+markdown==3.3.4

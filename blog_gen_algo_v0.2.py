@@ -49,7 +49,8 @@ steps_prompts = [
     "Whenever relevant include YouTube videos that explain the process, "
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
-    "and include references to other websites if helpful for the user."
+    "and include references to other websites if helpful for the user. "
+    "Make sure to include 2 new lines before starting the next point."
     ,
     # Step 4
     "You will proceed to write the second point of the outline (if this point doesn't exist, simply don't respond). "
@@ -58,7 +59,8 @@ steps_prompts = [
     "Whenever relevant include YouTube videos that explain the process, "
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
-    "and include references to other websites if helpful for the user."
+    "and include references to other websites if helpful for the user. "
+    "Make sure to include 2 new lines before starting the next point."
     ,
     # Step 5
     "You will proceed to write the third point of the outline (if this point doesn't exist, simply don't respond). "
@@ -67,7 +69,8 @@ steps_prompts = [
     "Whenever relevant include YouTube videos that explain the process, "
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
-    "and include references to other websites if helpful for the user."
+    "and include references to other websites if helpful for the user. "
+    "Make sure to include 2 new lines before starting the next point."
     ,
     # Step 6
     "You will proceed to write the fourth point of the outline (if this point doesn't exist, simply don't respond). "
@@ -76,7 +79,8 @@ steps_prompts = [
     "Whenever relevant include YouTube videos that explain the process, "
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
-    "and include references to other websites if helpful for the user."
+    "and include references to other websites if helpful for the user. "
+    "Make sure to include 2 new lines before starting the next point."
     ,
     # Step 7
     "You will proceed to write the fifth point of the outline (if this point doesn't exist, simply don't respond). "
@@ -94,7 +98,8 @@ steps_prompts = [
     "Whenever relevant include YouTube videos that explain the process, "
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
-    "and include references to other websites if helpful for the user."
+    "and include references to other websites if helpful for the user. "
+    "Make sure to include 2 new lines before starting the next point."
     ,
     # Step 9
     "You will create a concisive conclusion paragraph. "

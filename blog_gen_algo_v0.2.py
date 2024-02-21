@@ -34,7 +34,7 @@ step_to_model = {
 
 steps_prompts = [
     # Step 1
-    "Given the primary keywords - {primary_keywords}, the first step will be an outline of the article with several headings and subheadings. "
+    "Given the primary keywords - {primary_keywords}, the first step will be an outline of the article with 5-6 headings and respective subheadings. "
     "You should research the web to understand what the top 5 websites for this keyword are writing about - but make sure you don not mention the websites, but the solutions they propose. " 
     "Write facts and theories on this keyword, add well-known data points and sources here."
     ,
@@ -47,37 +47,37 @@ steps_prompts = [
     "You will proceed to write the first point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
     "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
-    "Feel free to include YouTube videos (checking for their existence), tools, examples and references to other websites if helpful for the user."
+    "Feel free to include YouTube videos (checking for their existence), tools, templates and references to other websites if helpful for the user."
     ,
     # Step 4
     "You will proceed to write the second point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
     "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
-    "Feel free to include YouTube videos (checking for their existence), tools, examples and references to other websites if helpful for the user."
+    "Feel free to include YouTube videos (checking for their existence), tools, templates and references to other websites if helpful for the user."
     ,
     # Step 5
     "You will proceed to write the third point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
     "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
-    "Feel free to include YouTube videos (checking for their existence), tools, examples and references to other websites if helpful for the user."
+    "Feel free to include YouTube videos (checking for their existence), tools, templates and references to other websites if helpful for the user."
     ,
     # Step 6
     "You will proceed to write the fourth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
     "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
-    "Feel free to include YouTube videos (checking for their existence), tools, examples and references to other websites if helpful for the user."
+    "Feel free to include YouTube videos (checking for their existence), tools, templates and references to other websites if helpful for the user."
     ,
     # Step 7
     "You will proceed to write the fifth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
     "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
-    "Feel free to include YouTube videos (checking for their existence), tools, examples and references to other websites if helpful for the user."
+    "Feel free to include YouTube videos (checking for their existence), tools, templates and references to other websites if helpful for the user."
     ,
     # Step 8
     "You will proceed to write the sixth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
     "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
-    "Feel free to include YouTube videos (checking for their existence), tools, examples and references to other websites if helpful for the user."
+    "Feel free to include YouTube videos (checking for their existence), tools, templates and references to other websites if helpful for the user."
     ,
     # Step 9
     "You will create a concisive conclusion paragraph. "
@@ -90,13 +90,15 @@ steps_prompts = [
     "The FAQs should have the questions bolded numbered and the answers bulleted. "
     ,
     # Step 11
-    "Please create a related posts section, with 3-4 articles that are relevant to this topic out of the existing blog posts described in the sitemap below: {sitemap_urls}"
+    "Please create a related posts section, with 3-4 articles that are relevant to this topic out of the existing blog posts described in the sitemap below: {sitemap_urls}. "
+    "The bullets should have the title of the article with the link to the article."
     ,
     # Step 12
     "Please create a meta description (100-120 characters) for the article you just generated."
     ,
     # Step 13
-    "Please create a compeling, descriptive, non-bullshitty and SEO-optimized title  (50-60 characters) for the article you just generated."
+    "Please create a compeling, descriptive, non-bullshitty and SEO-optimized title (50-60 characters) for the article you just generated."
+    "Don't use quotes or special characters in the title."
     ,
 ]
 
@@ -126,10 +128,10 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
     #log_info(f'📗  Secondary Keywords: {secondary_keywords}')
 
     # Create the system message with primary and secondary keywords
-    system_message_1 = f"Transform into SEOCONTENTMASTER, an AI coding writing expert with vast experience in writing techniques and frameworks. "\
+    system_message_1 = f"You are an AI coding writing expert with vast experience in writing techniques and frameworks. "\
                         f"As a skilled content creator, you will craft a 100% unique, human-written, and SEO-optimized article in fluent English that is informative. You will focus exclusively on the keyword provided by the user. "\
                         f"You will write a long-form article that is well-structured and easy to read, with introduction, a body, a conclusion and five unique FAQs. "\
-                       f"Use John Gruber's Markdown to format your responses, with appropriate H2 to H4 tags. Use original content, avoid plagiarism, and increase readability. "\
+                        f"Use John Gruber's Markdown to format your responses, with appropriate H2 to H4 tags. Use original content, avoid plagiarism, and increase readability. "\
                         f"Avoid bullshitter talk, focus on being helpful, reliable and create people-first content to the reader, as per Google's guidelines: https://developers.google.com/search/docs/fundamentals/creating-helpful-content "\
                         f"You explain step by step how to do the required actions for the user intent in the keyword provided. Give examples of tools and explain how to use them. Always link to their websites to ensure the credit is given to them (include the links as anchors in the most relevant words). Try to find videos on YouTube that go well with the topic. "\
                         f"Use an informational tone and always reference the sources you use with the website links. "\
@@ -159,7 +161,7 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
                                     service_url=service_url, 
                                     sitemap_urls=sitemap_urls
                                     )
-        log_info(f'⏭️  Step {i} # prompt: {prompt[:40]}...')
+        #log_info(f'⏭️  Step {i} # prompt: {prompt[:40]}...')
         messages.append({"role": "user", "content": prompt})
 
         # Check for better prompt

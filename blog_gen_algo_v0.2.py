@@ -1,4 +1,3 @@
-import datetime
 import sys
 
 import streamlit as st
@@ -10,11 +9,27 @@ from tools.decision import require_data_for_prompt, require_better_prompt, find_
 from tools.file import create_file_with_keyword, append_content_to_file
 from tools.logger import log_info, setup_logger
 from tools.serpapi import get_related_queries, get_image_with_commercial_usage
+from tools.storyblok import post_article_to_storyblok
 from tools.subprocess import open_file_with_md_app
-from tools.const import OPENAI_MODEL, OPENAI_TEMPERATURE, SERVICE_NAME
-from tools.const import SERVICE_DESCRIPTION
-from tools.const import SERVICE_URL
+from tools.const import OPENAI_TEMPERATURE, SERVICE_NAME, SERVICE_DESCRIPTION, SERVICE_URL
 from tokencost import calculate_prompt_cost, calculate_completion_cost
+
+# Step-to-Model Mapping: Define your model preferences here
+step_to_model = {
+    1: 'gpt-3.5-turbo-0125',
+    2: 'gpt-3.5-turbo-0125',
+    3: 'gpt-4-0125-preview',
+    4: 'gpt-4-0125-preview',
+    5: 'gpt-4-0125-preview',
+    6: 'gpt-4-0125-preview',
+    7: 'gpt-4-0125-preview',
+    8: 'gpt-4-0125-preview',
+    9: 'gpt-3.5-turbo-0125',
+    10: 'gpt-3.5-turbo-0125',
+    11: 'gpt-3.5-turbo-0125',
+    12: 'gpt-3.5-turbo-0125',
+    13: 'gpt-3.5-turbo-0125',
+}
 
 
 steps_prompts = [
@@ -25,46 +40,51 @@ steps_prompts = [
     # Step 2
     "The second step is to write the introduction of the article, with the appropriate Introduction H2 title. Aim at 100-150 words for the introduction. "
     "Include at the end a bullet point table-of-contents with only the H2 titles, with a link to the respective anchor links (all words lowercased). "
-    "Make sure to add an anchor link to every H2 title.",
+    "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
     # Step 3
     "You will proceed to write the first point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Make sure to add an anchor link to every H2 title (all words lowercased). "
+    "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
     "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user (but doublecheck those links first!).",
     # Step 4
     "You will proceed to write the second point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Make sure to add an anchor link to every H2 title (all words lowercased). "
+    "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
     "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user (but doublecheck those links first!).",
     # Step 5
     "You will proceed to write the third point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Make sure to add an anchor link to every H2 title (all words lowercased). "
+    "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
     "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user (but doublecheck those links first!).",
     # Step 6
     "You will proceed to write the fourth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Make sure to add an anchor link to every H2 title (all words lowercased). "
+    "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
     "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user (but doublecheck those links first!).",
     # Step 7
     "You will proceed to write the fifth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Make sure to add an anchor link to every H2 title (all words lowercased). "
+    "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
     "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user (but doublecheck those links first!).",
     # Step 8
     "You will proceed to write the sixth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Make sure to add an anchor link to every H2 title (all words lowercased). "
+    "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
     "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user (but doublecheck those links first!).",
     # Step 9
-    "You will create a concisive conclusion paragraph and five unique FAQs after the conclusion. "
-    "The FAQs need to take the keyword into account at all times. "
+    "You will create a concisive conclusion paragraph. "
     "Make sure to add an anchor link to every H2 title (all words lowercased). "
-    "The FAQs should have the questions bolded numbered and the answers bulleted. "
     # Step 10
-    "Please create a related posts section, with 3-4 articles that are relevant to this topic out of the existing blog posts described in the sitemap below: {sitemap_urls}",
+    "You will create five unique FAQs after the conclusion. "
+    "The FAQs need to take the keyword into account at all times. "
+    "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
+    "The FAQs should have the questions bolded numbered and the answers bulleted. "
     # Step 11
+    "Please create a related posts section, with 3-4 articles that are relevant to this topic out of the existing blog posts described in the sitemap below: {sitemap_urls}",
+    # Step 12
     "Please create a meta description (100-120 characters) for the article you just generated.",
+    # Step 13
+    "Please create a compeling, descriptive, non-bullshitty and SEO-optimized title  (50-60 characters) for the article you just generated.",
 ]
 
 def load_sitemap_and_extract_urls(sitemap_path):
@@ -82,6 +102,7 @@ def load_sitemap_and_extract_urls(sitemap_path):
 def generate_blog_for_keywords(primary_keywords="knee replacement surgery", service_name=SERVICE_NAME, service_description=SERVICE_DESCRIPTION, service_url=SERVICE_URL):
     # Iterate through each example
     messages = []
+    payload = {"title": "", "metadescription": "", "intro": "", "body": "", "conclusion": "", "related_posts": "", "faqs": "", "keyword": primary_keywords}
 
     filepath = create_file_with_keyword(primary_keywords)
     log_info(f'🗂️  File Created {filepath}')
@@ -149,23 +170,43 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
             if news_data:
                 messages.append({"role": "assistant", "content": f"Found news on the topic: {news_data}"})
 
-        response = chat_with_open_ai(messages, temperature=OPENAI_TEMPERATURE)
+        model = step_to_model.get(i, 'gpt-4-0125-preview')  # Fallback to a default model if not specified
+        response = chat_with_open_ai(messages, model=model, temperature=OPENAI_TEMPERATURE)
         messages.append({"role": "assistant", "content": response})
         
-        prompt_cost = calculate_prompt_cost(prompt, OPENAI_MODEL)
-        completion_cost = calculate_completion_cost(response, OPENAI_MODEL)
+        prompt_cost = calculate_prompt_cost(prompt, model)
+        completion_cost = calculate_completion_cost(response, model)
         total_cost += prompt_cost + completion_cost
 
         # Don't append the response of the first step
         if i > 1:
             append_content_to_file(filepath, response, st if CLI else None)
         log_info(f'🔺 ️Completed Step {i}. Words: {len(response.split(" "))}')
+        
+        # Capture the response for each section
+        if i == 2:  # Assuming intro is captured here
+            payload['intro'] += response
+        elif 3 <= i <= 8:  # Assuming body is constructed here
+            payload['body'] += response
+        elif i == 9:  # Conclusion
+            payload['conclusion'] += response
+        elif i == 10:  # FAQs
+            payload['faqs'] += response
+        elif i == 11:  # Related posts
+            payload['related_posts'] += response
+        elif i == 12:  # Meta description
+            payload['metadescription'] += response
+        elif i == 13:  # Title
+            payload['title'] += response
 
         i += 1
         total_words += len(response.split(" "))
 
     #footer_message = f"🎁  Finished generation at {datetime.datetime.now()}. 📬  Total words: {total_words}"
     #append_content_to_file(filepath, footer_message, st if CLI else None)
+    
+    # At the end of the loop, send the payload to Storyblok
+    post_article_to_storyblok(payload)
     
     # Read the generated content
     with open(filepath, 'r') as file:

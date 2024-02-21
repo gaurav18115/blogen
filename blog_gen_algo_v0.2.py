@@ -19,7 +19,7 @@ from tokencost import calculate_prompt_cost, calculate_completion_cost
 
 steps_prompts = [
     # Step 1
-    "Given the primary keywords - {primary_keywords}, rhe first step will be an outline of the article with several headings and subheadings. "
+    "Given the primary keywords - {primary_keywords}, the first step will be an outline of the article with several headings and subheadings. "
     "You should research the web to understand what the top 5 websites for this keyword are writing about - but make sure you don not mention the websites, but the solutions they propose. " 
     "Write facts and theories on this keyword, add well-known data points and sources here.",
     # Step 2

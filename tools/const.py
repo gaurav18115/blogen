@@ -19,10 +19,12 @@ BLOG_WRITING_TONES = [
 ]
 
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', '')
-OPENAI_MODEL = os.getenv('OPENAI_MODEL', 'gpt-3.5-turbo')
 OPENAI_MAX_TOKENS = int(os.getenv('OPENAI_MAX_TOKENS', 4000))
 OPENAI_TEMPERATURE = float(os.getenv('OPENAI_TEMPERATURE', 0.9))
 OPENAI_STOP_SEQ = os.getenv('OPENAI_STOP_SEQ', '\n')
+
+STORYBLOK_TOKEN = os.getenv('STORYBLOK_TOKEN', '')
+STORYBLOK_SPACE_ID = os.getenv('STORYBLOK_SPACE_ID', '')
 
 SERP_API_KEY = os.getenv('SERP_API_KEY', '')
 

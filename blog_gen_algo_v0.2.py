@@ -16,7 +16,7 @@ from tokencost import calculate_prompt_cost, calculate_completion_cost
 
 # Step-to-Model Mapping: Define your model preferences here
 step_to_model = {
-    1: 'gpt-3.5-turbo-0125',
+    1: 'gpt-4-0125-preview',
     2: 'gpt-3.5-turbo-0125',
     3: 'gpt-4-0125-preview',
     4: 'gpt-4-0125-preview',
@@ -24,8 +24,8 @@ step_to_model = {
     6: 'gpt-4-0125-preview',
     7: 'gpt-4-0125-preview',
     8: 'gpt-4-0125-preview',
-    9: 'gpt-3.5-turbo-0125',
-    10: 'gpt-3.5-turbo-0125',
+    9: 'gpt-4-0125-preview',
+    10: 'gpt-4-0125-preview',
     11: 'gpt-3.5-turbo-0125',
     12: 'gpt-3.5-turbo-0125',
     13: 'gpt-3.5-turbo-0125',
@@ -36,55 +36,68 @@ steps_prompts = [
     # Step 1
     "Given the primary keywords - {primary_keywords}, the first step will be an outline of the article with several headings and subheadings. "
     "You should research the web to understand what the top 5 websites for this keyword are writing about - but make sure you don not mention the websites, but the solutions they propose. " 
-    "Write facts and theories on this keyword, add well-known data points and sources here.",
+    "Write facts and theories on this keyword, add well-known data points and sources here."
+    ,
     # Step 2
     "The second step is to write the introduction of the article, with the appropriate Introduction H2 title. Aim at 100-150 words for the introduction. "
-    "Include at the end a bullet point table-of-contents with only the H2 titles, with a link to the respective anchor links (all words lowercased). "
+    "Include at the end a bullet point table-of-contents with only the H2 titles, with a link to the respective anchor links (the anchor links words are to be lowercased). "
     "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
+    ,
     # Step 3
     "You will proceed to write the first point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
     "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
-    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user (but doublecheck those links first!).",
+    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user (but doublecheck those links first!)."
+    ,
     # Step 4
     "You will proceed to write the second point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
     "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
-    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user (but doublecheck those links first!).",
+    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user (but doublecheck those links first!)."
+    ,
     # Step 5
     "You will proceed to write the third point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
     "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
-    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user (but doublecheck those links first!).",
+    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user (but doublecheck those links first!)."
+    ,
     # Step 6
     "You will proceed to write the fourth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
     "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
-    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user (but doublecheck those links first!).",
+    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user (but doublecheck those links first!)."
+    ,
     # Step 7
     "You will proceed to write the fifth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
     "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
-    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user (but doublecheck those links first!).",
+    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user (but doublecheck those links first!)."
+    ,
     # Step 8
     "You will proceed to write the sixth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
     "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
-    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user (but doublecheck those links first!).",
+    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user (but doublecheck those links first!)."
+    ,
     # Step 9
     "You will create a concisive conclusion paragraph. "
     "Make sure to add an anchor link to every H2 title (all words lowercased). "
+    ,
     # Step 10
     "You will create five unique FAQs after the conclusion. "
     "The FAQs need to take the keyword into account at all times. "
     "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
     "The FAQs should have the questions bolded numbered and the answers bulleted. "
+    ,
     # Step 11
-    "Please create a related posts section, with 3-4 articles that are relevant to this topic out of the existing blog posts described in the sitemap below: {sitemap_urls}",
+    "Please create a related posts section, with 3-4 articles that are relevant to this topic out of the existing blog posts described in the sitemap below: {sitemap_urls}"
+    ,
     # Step 12
-    "Please create a meta description (100-120 characters) for the article you just generated.",
+    "Please create a meta description (100-120 characters) for the article you just generated."
+    ,
     # Step 13
-    "Please create a compeling, descriptive, non-bullshitty and SEO-optimized title  (50-60 characters) for the article you just generated.",
+    "Please create a compeling, descriptive, non-bullshitty and SEO-optimized title  (50-60 characters) for the article you just generated."
+    ,
 ]
 
 def load_sitemap_and_extract_urls(sitemap_path):
@@ -124,14 +137,14 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
                         f"Emilio’s is an AI-powered email client designed to save users time. Key functionalities include sorting prioritized emails, summarizing messages and digesting the inbox, drafting emails with the user's tone, and requiring no installation as it operates in the background. The service integrates with the user's existing Gmail account. "\
                         f"The interaction with the user will take several steps below. You will take the necessary time in every step, and do one at a time to ensure the maximum quality possible."
 
-    log_info(f'🤖  System:\n{system_message_1}\n\n')
+    #log_info(f'🤖  System:\n{system_message_1}\n\n')
     messages.append({"role": "system", "content": system_message_1})
 
     #tone_of_writing = find_tone_of_writing(primary_keywords, messages)
     
     sitemap_path = 'sitemap.xml'
     sitemap_urls = load_sitemap_and_extract_urls(sitemap_path)
-    log_info(f'🗺️  Sitemap URLs: {sitemap_urls}')
+    #log_info(f'🗺️  Sitemap URLs: {sitemap_urls}')
 
     i = 1
     total_words = 0
@@ -146,7 +159,7 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
                                     service_url=service_url, 
                                     sitemap_urls=sitemap_urls
                                     )
-        log_info(f'⏭️  Step {i} # Predefined Prompt: {prompt}')
+        log_info(f'⏭️  Step {i} # prompt: {prompt[:40]}...')
         messages.append({"role": "user", "content": prompt})
 
         # Check for better prompt
@@ -181,7 +194,7 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
         # Don't append the response of the first step
         if i > 1:
             append_content_to_file(filepath, response, st if CLI else None)
-        log_info(f'🔺 ️Completed Step {i}. Words: {len(response.split(" "))}')
+        log_info(f'🔺 ️Completed Step {i}. Words: {len(response.split(" "))}, Cost: {prompt_cost + completion_cost}')
         
         # Capture the response for each section
         if i == 2:  # Assuming intro is captured here

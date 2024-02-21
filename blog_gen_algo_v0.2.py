@@ -16,19 +16,19 @@ from tokencost import calculate_prompt_cost, calculate_completion_cost
 
 # Step-to-Model Mapping: Define your model preferences here
 step_to_model = {
-    1: 'gpt-4-0125-preview',
-    2: 'gpt-3.5-turbo-0125',
-    3: 'gpt-4-0125-preview',
+    1: 'gpt-4-0125-preview', # Outline
+    2: 'gpt-3.5-turbo-0125', # Introduction
+    3: 'gpt-4-0125-preview', # Body (...)
     4: 'gpt-4-0125-preview',
     5: 'gpt-4-0125-preview',
     6: 'gpt-4-0125-preview',
     7: 'gpt-4-0125-preview',
     8: 'gpt-4-0125-preview',
     9: 'gpt-4-0125-preview',
-    10: 'gpt-4-0125-preview',
-    11: 'gpt-3.5-turbo-0125',
-    12: 'gpt-3.5-turbo-0125',
-    13: 'gpt-3.5-turbo-0125',
+    10: 'gpt-4-0125-preview', # Conclusion
+    11: 'gpt-3.5-turbo-0125', # Related Posts
+    12: 'gpt-3.5-turbo-0125', # Meta Description
+    13: 'gpt-3.5-turbo-0125', # Title
 }
 
 
@@ -39,59 +39,76 @@ steps_prompts = [
     "Write facts and theories on this keyword, add well-known data points and sources here."
     ,
     # Step 2
-    "The second step is to write the introduction of the article, with the appropriate Introduction H2 title. Aim at 100-150 words for the introduction. "
-    "Include at the end a bullet point table-of-contents with only the H2 titles, with a link to the respective anchor links (the anchor links words are to be lowercased, but not their titles). "
-    "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
+    "The second step is to write the introduction of the article, without any H2 title. Aim at 100-150 words. "
+    "Include at the end a bulleted-point table-of-contents with the H2 titles exclusively of the body (excl. conclusion and FAQs), with a link to the respective anchor links (anchor links lowercased, but not their titles). "
     ,
     # Step 3
     "You will proceed to write the first point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
     "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
-    "Feel free to include YouTube videos (checking for their existence), tools, templates and references to other websites if helpful for the user."
+    "Whenever relevant include YouTube videos that explain the process, "
+    "highlight tools that can help the user, "
+    "cover templates that allow the user to simply copy-paste " 
+    "and include references to other websites if helpful for the user."
     ,
     # Step 4
     "You will proceed to write the second point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
     "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
-    "Feel free to include YouTube videos (checking for their existence), tools, templates and references to other websites if helpful for the user."
+    "Whenever relevant include YouTube videos that explain the process, "
+    "highlight tools that can help the user, "
+    "cover templates that allow the user to simply copy-paste " 
+    "and include references to other websites if helpful for the user."
     ,
     # Step 5
     "You will proceed to write the third point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
     "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
-    "Feel free to include YouTube videos (checking for their existence), tools, templates and references to other websites if helpful for the user."
+    "Whenever relevant include YouTube videos that explain the process, "
+    "highlight tools that can help the user, "
+    "cover templates that allow the user to simply copy-paste " 
+    "and include references to other websites if helpful for the user."
     ,
     # Step 6
     "You will proceed to write the fourth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
     "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
-    "Feel free to include YouTube videos (checking for their existence), tools, templates and references to other websites if helpful for the user."
+    "Whenever relevant include YouTube videos that explain the process, "
+    "highlight tools that can help the user, "
+    "cover templates that allow the user to simply copy-paste " 
+    "and include references to other websites if helpful for the user."
     ,
     # Step 7
     "You will proceed to write the fifth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
     "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
-    "Feel free to include YouTube videos (checking for their existence), tools, templates and references to other websites if helpful for the user."
+    "Whenever relevant include YouTube videos that explain the process, "
+    "highlight tools that can help the user, "
+    "cover templates that allow the user to simply copy-paste " 
+    "and include references to other websites if helpful for the user."
     ,
     # Step 8
     "You will proceed to write the sixth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
     "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
-    "Feel free to include YouTube videos (checking for their existence), tools, templates and references to other websites if helpful for the user."
+    "Whenever relevant include YouTube videos that explain the process, "
+    "highlight tools that can help the user, "
+    "cover templates that allow the user to simply copy-paste " 
+    "and include references to other websites if helpful for the user."
     ,
     # Step 9
     "You will create a concisive conclusion paragraph. "
     "Make sure to add an anchor link to every H2 title (all words lowercased). "
     ,
     # Step 10
-    "You will create five unique FAQs after the conclusion. "
+    "You will create five unique Frequently Asked Questions (FAQs) after the conclusion. "
     "The FAQs need to take the keyword into account at all times. "
     "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
-    "The FAQs should have the questions bolded numbered and the answers bulleted. "
+    "The FAQs should have the questions bolded numbered and the answers in only one bullet. "
     ,
     # Step 11
     "Please create a related posts section, with 3-4 articles that are relevant to this topic out of the existing blog posts described in the sitemap below: {sitemap_urls}. "
-    "The bullets should have the title of the article with the link to the article."
+    "The bullets should have the title of the article directly with the link to the article - e.g., in markdown [title](link)."
     ,
     # Step 12
     "Please create a meta description (100-120 characters) for the article you just generated."

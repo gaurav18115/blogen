@@ -40,44 +40,44 @@ steps_prompts = [
     ,
     # Step 2
     "The second step is to write the introduction of the article, with the appropriate Introduction H2 title. Aim at 100-150 words for the introduction. "
-    "Include at the end a bullet point table-of-contents with only the H2 titles, with a link to the respective anchor links (the anchor links words are to be lowercased). "
+    "Include at the end a bullet point table-of-contents with only the H2 titles, with a link to the respective anchor links (the anchor links words are to be lowercased, but not their titles). "
     "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
     ,
     # Step 3
     "You will proceed to write the first point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
     "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
-    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user (but doublecheck those links first!)."
+    "Feel free to include YouTube videos (checking for their existence), tools, examples and references to other websites if helpful for the user."
     ,
     # Step 4
     "You will proceed to write the second point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
     "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
-    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user (but doublecheck those links first!)."
+    "Feel free to include YouTube videos (checking for their existence), tools, examples and references to other websites if helpful for the user."
     ,
     # Step 5
     "You will proceed to write the third point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
     "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
-    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user (but doublecheck those links first!)."
+    "Feel free to include YouTube videos (checking for their existence), tools, examples and references to other websites if helpful for the user."
     ,
     # Step 6
     "You will proceed to write the fourth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
     "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
-    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user (but doublecheck those links first!)."
+    "Feel free to include YouTube videos (checking for their existence), tools, examples and references to other websites if helpful for the user."
     ,
     # Step 7
     "You will proceed to write the fifth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
     "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
-    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user (but doublecheck those links first!)."
+    "Feel free to include YouTube videos (checking for their existence), tools, examples and references to other websites if helpful for the user."
     ,
     # Step 8
     "You will proceed to write the sixth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
     "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
-    "Feel free to include YouTube videos, tools, and references to other websites if helpful for the user (but doublecheck those links first!)."
+    "Feel free to include YouTube videos (checking for their existence), tools, examples and references to other websites if helpful for the user."
     ,
     # Step 9
     "You will create a concisive conclusion paragraph. "
@@ -121,9 +121,9 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
     log_info(f'🗂️  File Created {filepath}')
     open_file_with_md_app(filepath)
 
-    secondary_keywords = get_related_queries(primary_keywords)
-    log_info(f'🎬  Primary Keywords: {primary_keywords}')
-    log_info(f'📗  Secondary Keywords: {secondary_keywords}')
+    #secondary_keywords = get_related_queries(primary_keywords)
+    log_info(f'🎬 Primary Keywords: {primary_keywords}')
+    #log_info(f'📗  Secondary Keywords: {secondary_keywords}')
 
     # Create the system message with primary and secondary keywords
     system_message_1 = f"Transform into SEOCONTENTMASTER, an AI coding writing expert with vast experience in writing techniques and frameworks. "\
@@ -226,16 +226,16 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
         content = file.read()
 
     # Generate ToC
-    toc = build_toc(filepath)
-
+    #toc = build_toc(filepath)
     # Insert ToC at the beginning of the content
-    content_with_toc = toc + "\n\n" + content
+    #content_with_toc = toc + "\n\n" + content
     
     log_info(f'Total cost of operation: {total_cost}')
 
     # Rewrite the file with ToC
     with open(filepath, 'w') as file:
-        file.write(content_with_toc)
+        #file.write(content_with_toc)
+        file.write(content)
 
 
 

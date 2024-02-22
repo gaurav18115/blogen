@@ -4,6 +4,18 @@ from tools.chatgpt import chat_with_open_ai
 from tools.const import SERP_API_KEY
 from tools.logger import log_info
 
+def get_search_urls(keyword, number_of_results=5):
+    params = {
+        "engine": "google",
+        "q": keyword,
+        "api_key": SERP_API_KEY,
+    }
+    search = GoogleSearch(params)
+    results = search.get_dict()
+    search_results = results.get("organic_results", [])
+    urls = [result["link"] for result in search_results[:number_of_results]]
+    return urls
+
 
 def get_related_queries(keyword):
     params = {

@@ -1,4 +1,5 @@
 import sys
+from urllib.parse import urlparse
 
 import streamlit as st
 from md_toc import build_toc
@@ -8,7 +9,8 @@ from tools.chatgpt import chat_with_open_ai
 from tools.decision import require_data_for_prompt, require_better_prompt, find_tone_of_writing
 from tools.file import create_file_with_keyword, append_content_to_file
 from tools.logger import log_info, setup_logger
-from tools.serpapi import get_related_queries, get_image_with_commercial_usage
+from tools.scraper import fetch_and_parse
+from tools.serpapi import get_related_queries, get_image_with_commercial_usage, get_search_urls
 from tools.storyblok import post_article_to_storyblok
 from tools.subprocess import open_file_with_md_app
 from tools.const import OPENAI_TEMPERATURE, SERVICE_NAME, SERVICE_DESCRIPTION, SERVICE_URL
@@ -35,8 +37,7 @@ step_to_model = {
 steps_prompts = [
     # Step 1
     "Given the primary keywords - {primary_keywords}, the first step will be an outline of the article with 5-6 headings and respective subheadings. "
-    "You should research the web to understand what the top 5 websites for this keyword are writing about - but make sure you don not mention the websites, but the solutions they propose. " 
-    "Write facts and theories on this keyword, add well-known data points and sources here."
+    "Take into consideration the summary of the first 10 search results for the keyword: {summary_of_search_results}."
     ,
     # Step 2
     "The second step is to write the introduction of the article, without any H2 title. Aim at 100-150 words. "
@@ -109,7 +110,7 @@ steps_prompts = [
     "You will create five unique Frequently Asked Questions (FAQs) after the conclusion. "
     "The FAQs need to take the keyword into account at all times. "
     "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
-    "The FAQs should have the questions bolded numbered and the answers in only one bullet. "
+    "The FAQs should have the questions bolded and numbered and the answers below every question in only one bullet. "
     ,
     # Step 11
     "Please create a related posts section, with 3-4 articles that are relevant to this topic out of the existing blog posts described in the sitemap below: {sitemap_urls}. "
@@ -148,7 +149,29 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
     #secondary_keywords = get_related_queries(primary_keywords)
     log_info(f'🎬 Primary Keywords: {primary_keywords}')
     #log_info(f'📗  Secondary Keywords: {secondary_keywords}')
-
+    
+    summarized_contents = []
+    total_cost = 0
+    urls = get_search_urls(primary_keywords, number_of_results=10)
+    for url in urls:
+        content = fetch_and_parse(url)
+        if content:
+            # Summarize the content using OpenAI
+            summarisation_model = "gpt-3.5-turbo-0125"
+            summary_prompt = f"Summarize the following content in 300 words or less, focusing on covering as many tools, templates and references as possible: {content[:3000]}"
+            summary = chat_with_open_ai([{"role": "user", "content": summary_prompt}], model=summarisation_model) 
+            summarized_contents.append(summary)
+            prompt_cost = calculate_prompt_cost(summary_prompt, model=summarisation_model)
+            completion_cost = calculate_completion_cost(summary, model=summarisation_model)
+            total_cost += prompt_cost + completion_cost
+            #print(f"Summary for {url}: {summary}\nCost: {prompt_cost + completion_cost}\n")
+            
+    if summarized_contents:
+        concatenated_summaries = " ".join(summarized_contents)  # Combine all summaries into one large text
+        summary_of_search_results_prompt = f"Summarize the following content in 300 words or less, focusing on covering as many tools, templates and references as possible: {concatenated_summaries}"
+        summary_of_search_results = chat_with_open_ai([{"role": "user", "content": summary_of_search_results_prompt}], model=summarisation_model) 
+        log_info(f"Summary of search results: {summary_of_search_results}\nCost: {total_cost}")
+    
     # Create the system message with primary and secondary keywords
     system_message_1 = f"You are an AI coding writing expert with vast experience in writing techniques and frameworks. "\
                         f"As a skilled content creator, you will craft a 100% unique, human-written, and SEO-optimized article in fluent English that is informative. You will focus exclusively on the keyword provided by the user. "\
@@ -181,7 +204,8 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
                                     service_name=service_name, 
                                     service_description=service_description, 
                                     service_url=service_url, 
-                                    sitemap_urls=sitemap_urls
+                                    sitemap_urls=sitemap_urls,
+                                    summary_of_search_results=summary_of_search_results
                                     )
         #log_info(f'⏭️  Step {i} # prompt: {prompt[:40]}...')
         messages.append({"role": "user", "content": prompt})

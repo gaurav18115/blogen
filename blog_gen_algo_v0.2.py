@@ -42,6 +42,7 @@ steps_prompts = [
     # Step 2
     "The second step is to write the introduction of the article, without any H2 title. Aim at 100-150 words. "
     "Include at the end a bulleted-point table-of-contents with the H2 titles exclusively of the body (excl. conclusion and FAQs), with a link to the respective anchor links (anchor links lowercased, but not their titles). "
+    "Make sure to separate every bullet with a new line."
     ,
     # Step 3
     "You will proceed to write the first point of the outline (if this point doesn't exist, simply don't respond). "
@@ -51,7 +52,7 @@ steps_prompts = [
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
     "and include references to other websites if helpful for the user. "
-    "Make sure to include 1 new line before starting the next point."
+    "Make sure to include 2 new lines at the end of the text block."
     ,
     # Step 4
     "You will proceed to write the second point of the outline (if this point doesn't exist, simply don't respond). "
@@ -61,7 +62,7 @@ steps_prompts = [
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
     "and include references to other websites if helpful for the user. "
-    "Make sure to include 1 new line before starting the next point."
+    "Make sure to include 2 new lines at the end of the text block."
     ,
     # Step 5
     "You will proceed to write the third point of the outline (if this point doesn't exist, simply don't respond). "
@@ -71,7 +72,7 @@ steps_prompts = [
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
     "and include references to other websites if helpful for the user. "
-    "Make sure to include 1 new line before starting the next point."
+    "Make sure to include 2 new lines at the end of the text block."
     ,
     # Step 6
     "You will proceed to write the fourth point of the outline (if this point doesn't exist, simply don't respond). "
@@ -81,7 +82,7 @@ steps_prompts = [
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
     "and include references to other websites if helpful for the user. "
-    "Make sure to include 1 new line before starting the next point."
+    "Make sure to include 2 new lines at the end of the text block."
     ,
     # Step 7
     "You will proceed to write the fifth point of the outline (if this point doesn't exist, simply don't respond). "
@@ -90,7 +91,7 @@ steps_prompts = [
     "Whenever relevant include YouTube videos that explain the process, "
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
-    "and include references to other websites if helpful for the user."
+    "Make sure to include 2 new lines at the end of the text block."
     ,
     # Step 8
     "You will proceed to write the sixth point of the outline (if this point doesn't exist, simply don't respond). "
@@ -100,7 +101,7 @@ steps_prompts = [
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
     "and include references to other websites if helpful for the user. "
-    "Make sure to include 1 new line before starting the next point."
+    "Make sure to include 2 new lines at the end of the text block."
     ,
     # Step 9
     "You will create a concisive conclusion paragraph. "
@@ -110,7 +111,7 @@ steps_prompts = [
     "You will create five unique Frequently Asked Questions (FAQs) after the conclusion. "
     "The FAQs need to take the keyword into account at all times. "
     "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
-    "The FAQs should have the questions bolded and numbered and the answers below every question in only one bullet. "
+    "The FAQs should have the questions bolded and numbered and the answers below (separated by a new line) every question in only one bullet. "
     ,
     # Step 11
     "Please create a related posts section, with 3-4 articles that are relevant to this topic out of the existing blog posts described in the sitemap below: {sitemap_urls}. "
@@ -179,7 +180,7 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
                         f"Use John Gruber's Markdown to format your responses, with appropriate H2 to H4 tags. Use original content, avoid plagiarism, and increase readability. "\
                         f"Avoid bullshitter talk, focus on being helpful, reliable and create people-first content to the reader, as per Google's guidelines: https://developers.google.com/search/docs/fundamentals/creating-helpful-content "\
                         f"You explain step by step how to do the required actions for the user intent in the keyword provided. Give examples of tools and explain how to use them. Always link to their websites to ensure the credit is given to them (include the links as anchors in the most relevant words). Try to find videos on YouTube that go well with the topic. "\
-                        f"Use an informational tone and always reference the sources you use with the website links. "\
+                        f"Use an informational tone and always reference the sources you use with the website links, including if you are referring to competitors of Emilio as we need to maximize collaboration in the network. "\
                         f"Whenever relevant, introduce Emilio and explain to the user how Emilio can help them with their problem. "\
                         f"Emilio’s is an AI-powered email client designed to save users time. Key functionalities include sorting prioritized emails, summarizing messages and digesting the inbox, drafting emails with the user's tone, and requiring no installation as it operates in the background. The service integrates with the user's existing Gmail account. "\
                         f"The interaction with the user will take several steps below. You will take the necessary time in every step, and do one at a time to ensure the maximum quality possible."

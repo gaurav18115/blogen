@@ -51,7 +51,7 @@ steps_prompts = [
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
     "and include references to other websites if helpful for the user. "
-    "Make sure to include 2 new lines before starting the next point."
+    "Make sure to include 1 new line before starting the next point."
     ,
     # Step 4
     "You will proceed to write the second point of the outline (if this point doesn't exist, simply don't respond). "
@@ -61,7 +61,7 @@ steps_prompts = [
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
     "and include references to other websites if helpful for the user. "
-    "Make sure to include 2 new lines before starting the next point."
+    "Make sure to include 1 new line before starting the next point."
     ,
     # Step 5
     "You will proceed to write the third point of the outline (if this point doesn't exist, simply don't respond). "
@@ -71,7 +71,7 @@ steps_prompts = [
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
     "and include references to other websites if helpful for the user. "
-    "Make sure to include 2 new lines before starting the next point."
+    "Make sure to include 1 new line before starting the next point."
     ,
     # Step 6
     "You will proceed to write the fourth point of the outline (if this point doesn't exist, simply don't respond). "
@@ -81,7 +81,7 @@ steps_prompts = [
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
     "and include references to other websites if helpful for the user. "
-    "Make sure to include 2 new lines before starting the next point."
+    "Make sure to include 1 new line before starting the next point."
     ,
     # Step 7
     "You will proceed to write the fifth point of the outline (if this point doesn't exist, simply don't respond). "
@@ -100,7 +100,7 @@ steps_prompts = [
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
     "and include references to other websites if helpful for the user. "
-    "Make sure to include 2 new lines before starting the next point."
+    "Make sure to include 1 new line before starting the next point."
     ,
     # Step 9
     "You will create a concisive conclusion paragraph. "
@@ -158,7 +158,7 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
         if content:
             # Summarize the content using OpenAI
             summarisation_model = "gpt-3.5-turbo-0125"
-            summary_prompt = f"Summarize the following content in 300 words or less, focusing on covering as many tools, templates and references as possible: {content[:3000]}"
+            summary_prompt = f"Create a knowledge base of the maximum number of tools, templates and references, in 300 words or less: {content[:3000]}"
             summary = chat_with_open_ai([{"role": "user", "content": summary_prompt}], model=summarisation_model) 
             summarized_contents.append(summary)
             prompt_cost = calculate_prompt_cost(summary_prompt, model=summarisation_model)
@@ -171,7 +171,7 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
         summary_of_search_results_prompt = f"Summarize the following content in 300 words or less, focusing on covering as many tools, templates and references as possible: {concatenated_summaries}"
         summary_of_search_results = chat_with_open_ai([{"role": "user", "content": summary_of_search_results_prompt}], model=summarisation_model) 
         log_info(f"Summary of search results: {summary_of_search_results}\nCost: {total_cost}")
-    
+            
     # Create the system message with primary and secondary keywords
     system_message_1 = f"You are an AI coding writing expert with vast experience in writing techniques and frameworks. "\
                         f"As a skilled content creator, you will craft a 100% unique, human-written, and SEO-optimized article in fluent English that is informative. You will focus exclusively on the keyword provided by the user. "\

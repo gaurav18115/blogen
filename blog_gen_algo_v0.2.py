@@ -171,7 +171,7 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
         summary_of_search_results_prompt = f"Summarize the following content in 300 words or less, focusing on covering as many tools, templates and references as possible: {concatenated_summaries}"
         summary_of_search_results = chat_with_open_ai([{"role": "user", "content": summary_of_search_results_prompt}], model=summarisation_model) 
         log_info(f"Summary of search results: {summary_of_search_results}\nCost: {total_cost}")
-            
+                    
     # Create the system message with primary and secondary keywords
     system_message_1 = f"You are an AI coding writing expert with vast experience in writing techniques and frameworks. "\
                         f"As a skilled content creator, you will craft a 100% unique, human-written, and SEO-optimized article in fluent English that is informative. You will focus exclusively on the keyword provided by the user. "\

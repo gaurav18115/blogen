@@ -41,80 +41,79 @@ steps_prompts = [
     ,
     # Step 2
     "The second step is to write the introduction of the article, without any H2 title. Aim at 100-150 words. "
-    "Include at the end a bulleted-point table-of-contents with the H2 titles exclusively of the body (excl. conclusion and FAQs), with a link to the respective anchor links (anchor links lowercased, but not their titles). "
-    "Make sure to separate every bullet with a new line."
+    "Include at the end a bulleted-point table-of-contents with the H2 titles exclusively of the body (excl. conclusion and FAQs), "
+    "with the following format: "
+    "- [H2 Title1](#h2-title1) "
+    "- [H2 Title2](#h2-title2) "
     ,
     # Step 3
     "You will proceed to write the first point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
+    "Make sure to add an anchor link to every H2, with the following format: [H2 Title](#h2-title). "
     "Whenever relevant include YouTube videos that explain the process, "
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
     "and include references to other websites if helpful for the user. "
-    "Make sure to include 2 new lines at the end of the text block."
     ,
     # Step 4
     "You will proceed to write the second point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
+    "Make sure to add an anchor link to every H2, with the following format: [H2 Title](#h2-title). "
     "Whenever relevant include YouTube videos that explain the process, "
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
     "and include references to other websites if helpful for the user. "
-    "Make sure to include 2 new lines at the end of the text block."
     ,
     # Step 5
     "You will proceed to write the third point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
+    "Make sure to add an anchor link to every H2, with the following format: [H2 Title](#h2-title). "
     "Whenever relevant include YouTube videos that explain the process, "
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
     "and include references to other websites if helpful for the user. "
-    "Make sure to include 2 new lines at the end of the text block."
     ,
     # Step 6
     "You will proceed to write the fourth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
+    "Make sure to add an anchor link to every H2, with the following format: [H2 Title](#h2-title). "
     "Whenever relevant include YouTube videos that explain the process, "
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
     "and include references to other websites if helpful for the user. "
-    "Make sure to include 2 new lines at the end of the text block."
     ,
     # Step 7
     "You will proceed to write the fifth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
+    "Make sure to add an anchor link to every H2, with the following format: [H2 Title](#h2-title). "
     "Whenever relevant include YouTube videos that explain the process, "
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
-    "Make sure to include 2 new lines at the end of the text block."
     ,
     # Step 8
     "You will proceed to write the sixth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
+    "Make sure to add an anchor link to every H2, with the following format: [H2 Title](#h2-title). "
     "Whenever relevant include YouTube videos that explain the process, "
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
     "and include references to other websites if helpful for the user. "
-    "Make sure to include 2 new lines at the end of the text block."
     ,
     # Step 9
-    "You will create a concisive conclusion paragraph. "
-    "Make sure to add an anchor link to every H2 title (all words lowercased). "
+    "You will create a concisive conclusion paragraph, with H2 heading 'Conclusion'. "
+    "Make sure to add an anchor link to every H2, with the following format: [H2 Title](#h2-title). "
     ,
     # Step 10
     "You will create five unique Frequently Asked Questions (FAQs) after the conclusion. "
     "The FAQs need to take the keyword into account at all times. "
-    "Make sure to add an anchor link to every H2 or H3 title (all words lowercased). "
-    "The FAQs should have the questions bolded and numbered and the answers below (separated by a new line) every question in only one bullet. "
+    "Make sure to add an anchor link to the H2 heading 'Frequently Asked Questions (FAQs)'. "
+    "The FAQs should have the questions bolded and numbered and the answers below (separated by a new line, every answer in only one bullet), "
+    "with the format: "
+    "1. **Question?** "
+    "  - Answer"
     ,
     # Step 11
-    "Please create a related posts section, with 3-4 articles that are relevant to this topic out of the existing blog posts described in the sitemap below: {sitemap_urls}. "
+    "Please create a related posts section (with H2 heading 'Related Posts'), with 3-4 articles that are relevant to this topic out of the existing blog posts described in the sitemap below: {sitemap_urls}. "
     "The bullets should have the title of the article directly with the link to the article - e.g., in markdown [title](link)."
     ,
     # Step 12
@@ -181,7 +180,7 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
                         f"Avoid bullshitter talk, focus on being helpful, reliable and create people-first content to the reader, as per Google's guidelines: https://developers.google.com/search/docs/fundamentals/creating-helpful-content "\
                         f"You explain step by step how to do the required actions for the user intent in the keyword provided. Give examples of tools and explain how to use them. Always link to their websites to ensure the credit is given to them (include the links as anchors in the most relevant words). Try to find videos on YouTube that go well with the topic. "\
                         f"Use an informational tone and always reference the sources you use with the website links, including if you are referring to competitors of Emilio as we need to maximize collaboration in the network. "\
-                        f"Whenever relevant, introduce Emilio and explain to the user how Emilio can help them with their problem. "\
+                        f"Whenever relevant, introduce Emilio (with website https//getemil.io/)and explain to the user how Emilio can help them with their problem. "\
                         f"Emilio’s is an AI-powered email client designed to save users time. Key functionalities include sorting prioritized emails, summarizing messages and digesting the inbox, drafting emails with the user's tone, and requiring no installation as it operates in the background. The service integrates with the user's existing Gmail account. "\
                         f"The interaction with the user will take several steps below. You will take the necessary time in every step, and do one at a time to ensure the maximum quality possible."
 
@@ -249,7 +248,7 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
         if i == 2:  # Assuming intro is captured here
             payload['intro'] += response
         elif 3 <= i <= 8:  # Assuming body is constructed here
-            payload['body'] += response
+            payload['body'] += response + "\n"
         elif i == 9:  # Conclusion
             payload['conclusion'] += response
         elif i == 10:  # FAQs

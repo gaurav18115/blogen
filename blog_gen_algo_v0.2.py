@@ -43,8 +43,8 @@ steps_prompts = [
     "The second step is to write the introduction of the article, without any H2 title. Aim at 100-150 words. "
     "Include at the end a bulleted-point table-of-contents with the H2 titles exclusively of the body (excl. conclusion and FAQs), "
     "with the following format: "
-    "- [H2 Title1](#h2-title1) "
-    "- [H2 Title2](#h2-title2) "
+    "- [H2 Title1](#h2-title1)\n "
+    "- [H2 Title2](#h2-title2)\n "
     ,
     # Step 3
     "You will proceed to write the first point of the outline (if this point doesn't exist, simply don't respond). "

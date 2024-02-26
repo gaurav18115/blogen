@@ -6,12 +6,14 @@ BLOGEN is a blog generation application designed to create well-structured blog 
 - [BLOGEN - Blog Generation Application (Version 0.1)](#blogen---blog-generation-application-version-01)
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
+  - [How it works](#how-it-works)
   - [Features](#features)
   - [Getting Started](#getting-started)
   - [Usage](#usage)
   - [Dependencies](#dependencies)
   - [Contributing](#contributing)
   - [License](#license)
+  - [Roadmap](#roadmap)
 
 ## Introduction
 BLOGEN is a Python-based blog generation tool that leverages the power of GPT-3.5 (OpenAI's language model) to create captivating blog posts. The application uses the primary keywords provided by the user to generate prompts and interactively calls the language model to produce content for each step of the blog creation process.
@@ -82,6 +84,13 @@ Contributions to BLOGEN are welcome! If you have ideas for improvements or bug f
 BLOGEN is licensed under the [MIT License](LICENSE). Feel free to use, modify, and distribute this software as per the terms of the license.
 
 For any questions or feedback, please contact me at `gaurav18115@gmail.com`.
+
+## Roadmap
+- [ ] Integrate [Unsplash API](https://unsplash.com/developers) to upload the picture to CMS
+- [ ] Find a way to put anchor links on headings
+- [ ] Create separate table-of-content section
+- [ ] Improve YouTube link generation
+- [ ] Create logic to check the URLs to avoid 404
 
 ---
 This README file was generated using BLOGEN (Version 0.1) - The Blog Generation Application.

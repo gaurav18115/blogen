@@ -132,6 +132,7 @@ steps_prompts = [
     ,
     # Step 15
     "Create a table of contents (ToC) for the article, but only keeping H2 headings. "
+    "Do not create a 'Table of Contents' H2 heading. "
     "Indent the H3 headings under the respective H2 headings. "
     "Make sure to include links to each section in the ToC, with the format: "
     "[H2 Title](#h2-title)"

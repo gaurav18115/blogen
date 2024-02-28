@@ -70,3 +70,18 @@ def fetch_articles():
         log_info(f"Failed to fetch articles. Status code: {response.status_code}, Message: {response.text}")
         return []
 
+def update_article_in_storyblok(article_id, article_data, slug=""):
+    url = f"https://mapi.storyblok.com/v1/spaces/{space_id}/stories/{article_id}"
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"{mgmtapi_token}",
+    }
+    
+    response = requests.put(url, data=json.dumps(article_data), headers=headers)
+    
+    if response.status_code == 200:
+        print(f"Article '{slug}' updated successfully!")
+        return response.json()
+    else:
+        print(f"Failed to update article. Status code: {response.status_code}, Message: {response.text}")
+        return None

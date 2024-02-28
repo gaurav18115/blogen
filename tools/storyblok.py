@@ -1,11 +1,12 @@
 import requests
 import json
-from tools.const import STORYBLOK_TOKEN, STORYBLOK_SPACE_ID
+from tools.const import STORYBLOK_MANAGEMENTAPI_TOKEN, STORYBLOK_CONTENTAPI_TOKEN, STORYBLOK_SPACE_ID
 from tools.logger import log_info
 import markdown
 
 # Variables
-oauth_token = STORYBLOK_TOKEN
+mgmtapi_token = STORYBLOK_MANAGEMENTAPI_TOKEN
+cntapi_token = STORYBLOK_CONTENTAPI_TOKEN
 space_id = STORYBLOK_SPACE_ID
 
 
@@ -13,7 +14,7 @@ def post_article_to_storyblok(article_data):
     url = f"https://mapi.storyblok.com/v1/spaces/{space_id}/stories/"
     headers = {
         "Content-Type": "application/json",
-        "Authorization": f"{oauth_token}",
+        "Authorization": f"{mgmtapi_token}",
     }
     
     # Convert Markdown fields to HTML
@@ -59,13 +60,13 @@ def post_article_to_storyblok(article_data):
         log_info(f"Failed to post article. Status code: {response.status_code}, Message: {response.text}")
         return None
     
-def fetch_article_titles():
-    url = f"https://api.storyblok.com/v1/cdn/stories?version=published&token={oauth_token}&space_id={space_id}"
+def fetch_articles():
+    url = f"https://api.storyblok.com/v1/cdn/stories?version=published&token={cntapi_token}&space_id={space_id}"
     response = requests.get(url)
     if response.status_code == 200:
         articles = response.json().get('stories', [])
-        titles = [article['name'] for article in articles]
-        return titles
+        return articles  # Return all article components
     else:
         log_info(f"Failed to fetch articles. Status code: {response.status_code}, Message: {response.text}")
         return []
+

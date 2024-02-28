@@ -47,7 +47,7 @@ steps_prompts = [
     # Step 3
     "You will proceed to write the first point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Make sure to add an anchor link to every H2, with the following format: ## <a name='h2-title'></a>H2 Title "
+    "Define the anchor link with the following format: ## <a name='h2-title'></a>H2 Title "
     "Whenever relevant include YouTube videos that explain the process, "
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
@@ -56,7 +56,7 @@ steps_prompts = [
     # Step 4
     "You will proceed to write the second point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Make sure to add an anchor link to every H2, with the following format: ## <a name='h2-title'></a>H2 Title "
+    "Define the anchor link with the following format: ## <a name='h2-title'></a>H2 Title "
     "Whenever relevant include YouTube videos that explain the process, "
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
@@ -65,7 +65,7 @@ steps_prompts = [
     # Step 5
     "You will proceed to write the third point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Make sure to add an anchor link to every H2, with the following format: ## <a name='h2-title'></a>H2 Title "
+    "Define the anchor link with the following format: ## <a name='h2-title'></a>H2 Title "
     "Whenever relevant include YouTube videos that explain the process, "
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
@@ -74,7 +74,7 @@ steps_prompts = [
     # Step 6
     "You will proceed to write the fourth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Make sure to add an anchor link to every H2, with the following format: ## <a name='h2-title'></a>H2 Title "
+    "Define the anchor link with the following format: ## <a name='h2-title'></a>H2 Title "
     "Whenever relevant include YouTube videos that explain the process, "
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
@@ -83,7 +83,7 @@ steps_prompts = [
     # Step 7
     "You will proceed to write the fifth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Make sure to add an anchor link to every H2, with the following format: ## <a name='h2-title'></a>H2 Title "
+    "Define the anchor link with the following format: ## <a name='h2-title'></a>H2 Title "
     "Whenever relevant include YouTube videos that explain the process, "
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
@@ -91,7 +91,7 @@ steps_prompts = [
     # Step 8
     "You will proceed to write the sixth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Make sure to add an anchor link to every H2, with the following format: ## <a name='h2-title'></a>H2 Title "
+    "Define the anchor link with the following format: ## <a name='h2-title'></a>H2 Title "
     "Whenever relevant include YouTube videos that explain the process, "
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
@@ -99,19 +99,21 @@ steps_prompts = [
     ,
     # Step 9
     "You will create a concisive conclusion paragraph, with H2 heading 'Conclusion'. "
-    "Make sure to add an anchor link to every H2, with the following format: ## <a name='h2-title'></a>H2 Title "
+    "Define the anchor link with the following format: ## <a name='h2-title'></a>H2 Title "
     ,
     # Step 10
     "You will create five unique Frequently Asked Questions (FAQs) after the conclusion. "
     "The FAQs need to take the keyword into account at all times. "
-    "Make sure to add an anchor link to the H2 heading 'Frequently Asked Questions (FAQs)', with the following format: ## <a name='h2-title'></a>H2 Title "
+    "Make sure to add an anchor link to the H2 heading 'Frequently Asked Questions (FAQs)', with two new lines after the heading. "
+    "Define the anchor link with the following format: ## <a name='h2-title'></a>H2 Title "
     "The FAQs should have the questions in H3 heading and the answers below (separated by a new line), "
     "with the format: "
     "### Question? "
     "Answer"
     ,
     # Step 11
-    "Please create a related posts section (with H2 heading 'Related Posts'), with 3-4 articles that are relevant to this topic out of the existing blog posts described in the sitemap below: {sitemap_urls}. "
+    "Please create a related posts section (with H2 heading 'Related Posts'), with two new lines after the heading. "
+    "Include 3-4 articles that are relevant to this topic out of the existing blog posts described in the sitemap below: {sitemap_urls}. "
     "The bullets should have the title of the article directly with the link to the article - e.g., in markdown [title](link)."
     ,
     # Step 12
@@ -125,7 +127,7 @@ steps_prompts = [
     ,
     # Step 14
     "Create a Key Takeaways section summarising crucial points. "
-    "Make sure to use the H2 heading 'Key Takeaways'. "
+    "Make sure to use the H2 heading 'Key Takeaways' with two new lines after the heading. "
     "The Key Takeaways should be in bullet format, with the format: "
     "- Takeaway 1"
     "\n- Takeaway 2"

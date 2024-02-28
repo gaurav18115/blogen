@@ -18,38 +18,36 @@ from tokencost import calculate_prompt_cost, calculate_completion_cost
 
 # Step-to-Model Mapping: Define your model preferences here
 step_to_model = {
-    1: 'gpt-4-0125-preview', # Outline
-    2: 'gpt-3.5-turbo-0125', # Introduction
-    3: 'gpt-4-0125-preview', # Body (...)
-    4: 'gpt-4-0125-preview',
-    5: 'gpt-4-0125-preview',
-    6: 'gpt-4-0125-preview',
-    7: 'gpt-4-0125-preview',
-    8: 'gpt-4-0125-preview',
-    9: 'gpt-4-0125-preview',
-    10: 'gpt-4-0125-preview', # Conclusion
-    11: 'gpt-3.5-turbo-0125', # Related Posts
-    12: 'gpt-3.5-turbo-0125', # Meta Description
-    13: 'gpt-3.5-turbo-0125', # Title
+    1: 'gpt-4-turbo-preview', # Outline
+    2: 'gpt-3.5-turbo', # Introduction
+    3: 'gpt-4-turbo-preview', # Body (...)
+    4: 'gpt-4-turbo-preview',
+    5: 'gpt-4-turbo-preview',
+    6: 'gpt-4-turbo-preview',
+    7: 'gpt-4-turbo-preview',
+    8: 'gpt-4-turbo-preview',
+    9: 'gpt-4-turbo-preview',
+    10: 'gpt-4-turbo-preview', # Conclusion
+    11: 'gpt-3.5-turbo', # Related Posts
+    12: 'gpt-3.5-turbo', # Meta Description
+    13: 'gpt-3.5-turbo', # Title
+    14: 'gpt-3.5-turbo', # Key Takeaways
+    15: 'gpt-3.5-turbo', # ToC
 }
 
 
 steps_prompts = [
     # Step 1
     "Given the primary keywords - {primary_keywords}, the first step will be an outline of the article with 5-6 headings and respective subheadings. "
-    "Take into consideration the summary of the first 10 search results for the keyword: {summary_of_search_results}."
+    "Take into consideration the summary of the first 10 search results for the keyword: {summary_of_search_results}"
     ,
-    # Step 2
-    "The second step is to write the introduction of the article, without any H2 title. Aim at 100-150 words. "
-    "Include at the end a bulleted-point table-of-contents with the H2 titles exclusively of the body (excl. conclusion and FAQs), "
-    "with the following format: "
-    "- [H2 Title1](#h2-title1)\n "
-    "- [H2 Title2](#h2-title2)\n "
+     # Step 2
+    "The second step is to write the introduction of the article, without any H2 title. Aim at 50-60 words, be concise yet impactful. "
     ,
     # Step 3
     "You will proceed to write the first point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Make sure to add an anchor link to every H2, with the following format: [H2 Title](#h2-title). "
+    "Make sure to add an anchor link to every H2, with the following format: ## <a name='h2-title'></a>H2 Title "
     "Whenever relevant include YouTube videos that explain the process, "
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
@@ -58,7 +56,7 @@ steps_prompts = [
     # Step 4
     "You will proceed to write the second point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Make sure to add an anchor link to every H2, with the following format: [H2 Title](#h2-title). "
+    "Make sure to add an anchor link to every H2, with the following format: ## <a name='h2-title'></a>H2 Title "
     "Whenever relevant include YouTube videos that explain the process, "
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
@@ -67,7 +65,7 @@ steps_prompts = [
     # Step 5
     "You will proceed to write the third point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Make sure to add an anchor link to every H2, with the following format: [H2 Title](#h2-title). "
+    "Make sure to add an anchor link to every H2, with the following format: ## <a name='h2-title'></a>H2 Title "
     "Whenever relevant include YouTube videos that explain the process, "
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
@@ -76,7 +74,7 @@ steps_prompts = [
     # Step 6
     "You will proceed to write the fourth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Make sure to add an anchor link to every H2, with the following format: [H2 Title](#h2-title). "
+    "Make sure to add an anchor link to every H2, with the following format: ## <a name='h2-title'></a>H2 Title "
     "Whenever relevant include YouTube videos that explain the process, "
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
@@ -85,7 +83,7 @@ steps_prompts = [
     # Step 7
     "You will proceed to write the fifth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Make sure to add an anchor link to every H2, with the following format: [H2 Title](#h2-title). "
+    "Make sure to add an anchor link to every H2, with the following format: ## <a name='h2-title'></a>H2 Title "
     "Whenever relevant include YouTube videos that explain the process, "
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
@@ -93,7 +91,7 @@ steps_prompts = [
     # Step 8
     "You will proceed to write the sixth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Make sure to add an anchor link to every H2, with the following format: [H2 Title](#h2-title). "
+    "Make sure to add an anchor link to every H2, with the following format: ## <a name='h2-title'></a>H2 Title "
     "Whenever relevant include YouTube videos that explain the process, "
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
@@ -101,16 +99,16 @@ steps_prompts = [
     ,
     # Step 9
     "You will create a concisive conclusion paragraph, with H2 heading 'Conclusion'. "
-    "Make sure to add an anchor link to every H2, with the following format: [H2 Title](#h2-title). "
+    "Make sure to add an anchor link to every H2, with the following format: ## <a name='h2-title'></a>H2 Title "
     ,
     # Step 10
     "You will create five unique Frequently Asked Questions (FAQs) after the conclusion. "
     "The FAQs need to take the keyword into account at all times. "
-    "Make sure to add an anchor link to the H2 heading 'Frequently Asked Questions (FAQs)'. "
-    "The FAQs should have the questions bolded and numbered and the answers below (separated by a new line, every answer in only one bullet), "
+    "Make sure to add an anchor link to the H2 heading 'Frequently Asked Questions (FAQs)', with the following format: ## <a name='h2-title'></a>H2 Title "
+    "The FAQs should have the questions in H3 heading and the answers below (separated by a new line), "
     "with the format: "
-    "1. **Question?** "
-    "  - Answer"
+    "### Question? "
+    "Answer"
     ,
     # Step 11
     "Please create a related posts section (with H2 heading 'Related Posts'), with 3-4 articles that are relevant to this topic out of the existing blog posts described in the sitemap below: {sitemap_urls}. "
@@ -120,8 +118,24 @@ steps_prompts = [
     "Please create a meta description (100-120 characters) for the article you just generated."
     ,
     # Step 13
-    "Please create a compeling, descriptive, non-bullshitty and SEO-optimized title (50-60 characters) for the article you just generated."
-    "Don't use quotes or special characters in the title."
+    "Please create 5 variations of a slightly click-baity (to invite the reader to click the link), SEO-optimized title (50-60 characters) for the article below. "
+    "Make sure to include the problem it is solving. Avoid futuristic and corporate type of words, phrase it as an How-To or even a Question. "
+    "The title should be in the format: 'Keyword: Subtitle', but only if the keyword fits well in the title. Don't use quotes or special characters in the title. "
+    "Present the titles in a single line (no bullets or numbers), each separated by a semicolon."
+    ,
+    # Step 14
+    "Create a Key Takeaways section summarising crucial points. "
+    "Make sure to use the H2 heading 'Key Takeaways'. "
+    "The Key Takeaways should be in bullet format, with the format: "
+    "- Takeaway 1"
+    "\n- Takeaway 2"
+    ,
+    # Step 15
+    "Create a table of contents (ToC) for the article, but only keeping H2 headings. "
+    "Indent the H3 headings under the respective H2 headings. "
+    "Make sure to include links to each section in the ToC, with the format: "
+    "[H2 Title](#h2-title)"
+    "\n\t[H3 Title](#h3-title)"
     ,
 ]
 
@@ -140,7 +154,7 @@ def load_sitemap_and_extract_urls(sitemap_path):
 def generate_blog_for_keywords(primary_keywords="knee replacement surgery", service_name=SERVICE_NAME, service_description=SERVICE_DESCRIPTION, service_url=SERVICE_URL):
     # Iterate through each example
     messages = []
-    payload = {"title": "", "metadescription": "", "intro": "", "body": "", "conclusion": "", "related_posts": "", "faqs": "", "keyword": primary_keywords}
+    payload = {"title": "", "metadescription": "", "intro": "", "body": "", "conclusion": "", "related_posts": "", "faqs": "", "keyword": primary_keywords, "key_takeaways": "", "toc": ""}
 
     filepath = create_file_with_keyword(primary_keywords)
     log_info(f'🗂️  File Created {filepath}')
@@ -157,14 +171,13 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
         content = fetch_and_parse(url)
         if content:
             # Summarize the content using OpenAI
-            summarisation_model = "gpt-3.5-turbo-0125"
+            summarisation_model = "gpt-3.5-turbo"
             summary_prompt = f"Create a knowledge base of the maximum number of tools, templates and references, in 300 words or less: {content[:3000]}"
             summary = chat_with_open_ai([{"role": "user", "content": summary_prompt}], model=summarisation_model) 
             summarized_contents.append(summary)
             prompt_cost = calculate_prompt_cost(summary_prompt, model=summarisation_model)
             completion_cost = calculate_completion_cost(summary, model=summarisation_model)
             total_cost += prompt_cost + completion_cost
-            #print(f"Summary for {url}: {summary}\nCost: {prompt_cost + completion_cost}\n")
             
     if summarized_contents:
         concatenated_summaries = " ".join(summarized_contents)  # Combine all summaries into one large text
@@ -231,13 +244,14 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
             if news_data:
                 messages.append({"role": "assistant", "content": f"Found news on the topic: {news_data}"})
 
-        model = step_to_model.get(i, 'gpt-4-0125-preview')  # Fallback to a default model if not specified
-        response = chat_with_open_ai(messages, model=model, temperature=OPENAI_TEMPERATURE)
-        messages.append({"role": "assistant", "content": response})
+        model = step_to_model.get(i, 'gpt-4-turbo-preview')  # Fallback to a default model if not specified
+        prompt_cost = calculate_prompt_cost(messages, model)
         
-        prompt_cost = calculate_prompt_cost(prompt, model)
+        response = chat_with_open_ai(messages, model=model, temperature=OPENAI_TEMPERATURE)
         completion_cost = calculate_completion_cost(response, model)
         total_cost += prompt_cost + completion_cost
+        
+        messages.append({"role": "assistant", "content": response})
 
         # Don't append the response of the first step
         if i > 1:
@@ -259,6 +273,10 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
             payload['metadescription'] += response
         elif i == 13:  # Title
             payload['title'] += response
+        elif i == 14:  # Key Takeaway
+            payload['key_takeaways'] += response
+        elif i == 15:  # ToC
+            payload['toc'] += response
 
         i += 1
         total_words += len(response.split(" "))
@@ -266,17 +284,18 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
     #footer_message = f"🎁  Finished generation at {datetime.datetime.now()}. 📬  Total words: {total_words}"
     #append_content_to_file(filepath, footer_message, st if CLI else None)
     
+    # Generate ToC
+    #toc = build_toc(filepath, keep_header_levels=2)
+    # Insert ToC at the beginning of the content
+    #payload['toc'] += toc
+    #content_with_toc = toc + "\n\n" + content
+    
     # At the end of the loop, send the payload to Storyblok
     post_article_to_storyblok(payload)
     
     # Read the generated content
     with open(filepath, 'r') as file:
         content = file.read()
-
-    # Generate ToC
-    #toc = build_toc(filepath)
-    # Insert ToC at the beginning of the content
-    #content_with_toc = toc + "\n\n" + content
     
     log_info(f'Total cost of operation: {total_cost}')
 

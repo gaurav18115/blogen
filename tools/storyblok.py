@@ -22,6 +22,8 @@ def post_article_to_storyblok(article_data):
     conclusion_html = markdown.markdown(article_data["conclusion"])
     related_posts_html = markdown.markdown(article_data["related_posts"])
     faqs_html = markdown.markdown(article_data["faqs"])
+    key_takeaways_html = markdown.markdown(article_data["key_takeaways"])
+    toc_html = markdown.markdown(article_data["toc"])
     
     # Structure the payload according to Storyblok's requirements
     payload = {
@@ -36,7 +38,9 @@ def post_article_to_storyblok(article_data):
                 "body": body_html,
                 "conclusion": conclusion_html,
                 "related_posts": related_posts_html,
-                "faqs": faqs_html
+                "faqs": faqs_html,
+                "key_takeaways": key_takeaways_html,
+                "toc": toc_html,
             }
         },
     }
@@ -54,3 +58,14 @@ def post_article_to_storyblok(article_data):
     else:
         log_info(f"Failed to post article. Status code: {response.status_code}, Message: {response.text}")
         return None
+    
+def fetch_article_titles():
+    url = f"https://api.storyblok.com/v1/cdn/stories?version=published&token={oauth_token}&space_id={space_id}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        articles = response.json().get('stories', [])
+        titles = [article['name'] for article in articles]
+        return titles
+    else:
+        log_info(f"Failed to fetch articles. Status code: {response.status_code}, Message: {response.text}")
+        return []

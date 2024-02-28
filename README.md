@@ -87,10 +87,12 @@ For any questions or feedback, please contact me at `gaurav18115@gmail.com`.
 
 ## Roadmap
 - [ ] Integrate [Unsplash API](https://unsplash.com/developers) to upload the picture to CMS
-- [ ] Find a way to put anchor links on headings
-- [ ] Create separate table-of-content section
+- [x] Find a way to put anchor links on headings
+- [x] Create separate table-of-content section
 - [ ] Improve YouTube link generation
 - [ ] Create logic to check the URLs to avoid 404
+- [x] Create Key Takeaway section and shorten Introduction
+- [x] Fix cost calculation by including full message instead of prompt only
 
 ---
 This README file was generated using BLOGEN (Version 0.1) - The Blog Generation Application.

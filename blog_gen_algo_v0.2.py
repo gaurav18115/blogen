@@ -310,7 +310,7 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
 
 
 def run_streamlit_app():
-    st.title("📝BLOGEN v0.1 (Blog Generation Algorithm)")
+    st.title("📝BLOGEN v0.2 (Blog Generation Algorithm)")
 
     # Add a text input field
     input_text = st.text_input("Enter some text:")
@@ -332,7 +332,7 @@ if __name__ == "__main__":
     if CLI:
         _keywords = " ".join(sys.argv[1:])
         if _keywords.strip() == "":
-            print("Error: keywords not specified.\nUSAGE: python blog_gen_algo_v0.1.py <keywords>")
+            print("Error: keywords not specified.\nUSAGE: python blog_gen_algo_v0.2.py <keywords>")
         while True:
             if _keywords.strip() == "":
                 _keywords = input("\nEnter the primary keywords:")

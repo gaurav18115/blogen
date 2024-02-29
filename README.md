@@ -56,11 +56,11 @@ To get started with BLOGEN, follow these steps:
    
 6. Launch the BLOGEN application:
    ```
-   python blog_gen_algo_v0.1.py [keyword]
+   python blog_gen_algo_v0.2.py [keyword]
    ```
 7. Alternatively use Streamlit for a browser interface:
    ```
-   streamlit run blog_gen_algo_v0.1.py [keyword]
+   streamlit run blog_gen_algo_v0.2.py [keyword]
    ```
 
 ## Usage
@@ -90,10 +90,10 @@ For any questions or feedback, please contact me at `gaurav18115@gmail.com`.
 - [x] Fix cost calculation by including full message instead of prompt only
 - [x] Find a way to put anchor links on headings
 - [x] Create separate table-of-content section
+- [x] Swap Intro with Key Takeaways
 - [ ] Integrate [Unsplash API](https://unsplash.com/developers) to upload the picture to CMS
 - [ ] Improve YouTube link generation
 - [ ] Create logic to check the URLs to avoid 404
-- [ ] Swap Intro with Key Takeaways
 
 ---
-This README file was generated using BLOGEN (Version 0.1) - The Blog Generation Application.
+This README file was generated using BLOGEN (Version 0.2) - The Blog Generation Application.

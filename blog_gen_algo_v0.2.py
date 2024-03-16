@@ -2,11 +2,9 @@ import sys
 from urllib.parse import urlparse
 
 import streamlit as st
-from md_toc import build_toc
 import xml.etree.ElementTree as ET
 
 from tools.chatgpt import chat_with_open_ai
-from tools.decision import require_data_for_prompt, require_better_prompt, find_tone_of_writing
 from tools.file import create_file_with_keyword, append_content_to_file
 from tools.logger import log_info, setup_logger
 from tools.scraper import fetch_and_parse
@@ -47,7 +45,7 @@ steps_prompts = [
     # Step 3
     "You will proceed to write the first point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Define the anchor link with the following format: ## <a name='h2-title'></a>H2 Title "
+    "Make sure to follow Google's helpful content guidelines and EEAT (Experience, Expertise, Authoritativeness, and Trustworthiness) into the section creation process. "
     "Whenever relevant include YouTube videos that explain the process, "
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
@@ -56,7 +54,7 @@ steps_prompts = [
     # Step 4
     "You will proceed to write the second point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Define the anchor link with the following format: ## <a name='h2-title'></a>H2 Title "
+    "Make sure to follow Google's helpful content guidelines and EEAT (Experience, Expertise, Authoritativeness, and Trustworthiness) into the section creation process. "
     "Whenever relevant include YouTube videos that explain the process, "
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
@@ -65,7 +63,7 @@ steps_prompts = [
     # Step 5
     "You will proceed to write the third point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Define the anchor link with the following format: ## <a name='h2-title'></a>H2 Title "
+    "Make sure to follow Google's helpful content guidelines and EEAT (Experience, Expertise, Authoritativeness, and Trustworthiness) into the section creation process. "
     "Whenever relevant include YouTube videos that explain the process, "
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
@@ -74,7 +72,7 @@ steps_prompts = [
     # Step 6
     "You will proceed to write the fourth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Define the anchor link with the following format: ## <a name='h2-title'></a>H2 Title "
+    "Make sure to follow Google's helpful content guidelines and EEAT (Experience, Expertise, Authoritativeness, and Trustworthiness) into the section creation process. "
     "Whenever relevant include YouTube videos that explain the process, "
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
@@ -83,7 +81,7 @@ steps_prompts = [
     # Step 7
     "You will proceed to write the fifth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Define the anchor link with the following format: ## <a name='h2-title'></a>H2 Title "
+    "Make sure to follow Google's helpful content guidelines and EEAT (Experience, Expertise, Authoritativeness, and Trustworthiness) into the section creation process. "
     "Whenever relevant include YouTube videos that explain the process, "
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
@@ -91,7 +89,7 @@ steps_prompts = [
     # Step 8
     "You will proceed to write the sixth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
-    "Define the anchor link with the following format: ## <a name='h2-title'></a>H2 Title "
+    "Make sure to follow Google's helpful content guidelines and EEAT (Experience, Expertise, Authoritativeness, and Trustworthiness) into the section creation process. "
     "Whenever relevant include YouTube videos that explain the process, "
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
@@ -133,12 +131,10 @@ steps_prompts = [
     "\n- Takeaway 2"
     ,
     # Step 15
-    "Create a table of contents (ToC) for the article, but only keeping H2 headings. "
+    "Create a table of contents (ToC) for the article, only keeping H2 headings and excluding Key Takaways and Introduction. "
     "Do not create a 'Table of Contents' H2 heading. "
-    "Indent the H3 headings under the respective H2 headings. "
     "Make sure to include links to each section in the ToC, with the format: "
     "[H2 Title](#h2-title)"
-    "\n\t[H3 Title](#h3-title)"
     ,
 ]
 
@@ -163,9 +159,7 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
     log_info(f'🗂️  File Created {filepath}')
     open_file_with_md_app(filepath)
 
-    #secondary_keywords = get_related_queries(primary_keywords)
     log_info(f'🎬 Primary Keywords: {primary_keywords}')
-    #log_info(f'📗  Secondary Keywords: {secondary_keywords}')
     
     summarized_contents = []
     total_cost = 0
@@ -194,25 +188,21 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
                         f"You will write a long-form article that is well-structured and easy to read, with introduction, a body, a conclusion and five unique FAQs. "\
                         f"Use John Gruber's Markdown to format your responses, with appropriate H2 to H4 tags. Use original content, avoid plagiarism, and increase readability. "\
                         f"Avoid bullshitter talk, focus on being helpful, reliable and create people-first content to the reader, as per Google's guidelines: https://developers.google.com/search/docs/fundamentals/creating-helpful-content "\
+                        f"Make sure to follow Google's helpful content guidelines and EEAT (Experience, Expertise, Authoritativeness, and Trustworthiness) into the section creation process. "\
                         f"You explain step by step how to do the required actions for the user intent in the keyword provided. Give examples of tools and explain how to use them. Always link to their websites to ensure the credit is given to them (include the links as anchors in the most relevant words). Try to find videos on YouTube that go well with the topic. "\
                         f"Use an informational tone and always reference the sources you use with the website links, including if you are referring to competitors of Emilio as we need to maximize collaboration in the network. "\
                         f"Whenever relevant, introduce Emilio (with website https//getemil.io/)and explain to the user how Emilio can help them with their problem. "\
                         f"Emilio’s is an AI-powered email client designed to save users time. Key functionalities include sorting prioritized emails, summarizing messages and digesting the inbox, drafting emails with the user's tone, and requiring no installation as it operates in the background. The service integrates with the user's existing Gmail account. "\
                         f"The interaction with the user will take several steps below. You will take the necessary time in every step, and do one at a time to ensure the maximum quality possible."
 
-    #log_info(f'🤖  System:\n{system_message_1}\n\n')
     messages.append({"role": "system", "content": system_message_1})
 
-    #tone_of_writing = find_tone_of_writing(primary_keywords, messages)
-    
     sitemap_path = 'sitemap.xml'
     sitemap_urls = load_sitemap_and_extract_urls(sitemap_path)
-    #log_info(f'🗺️  Sitemap URLs: {sitemap_urls}')
 
     i = 1
     total_words = 0
     total_cost = 0
-    already_sourced = []
     for step_prompt in steps_prompts:
         # Pre-defined prompt
         prompt = step_prompt.format(primary_keywords=primary_keywords, 
@@ -223,29 +213,7 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
                                     sitemap_urls=sitemap_urls,
                                     summary_of_search_results=summary_of_search_results
                                     )
-        #log_info(f'⏭️  Step {i} # prompt: {prompt[:40]}...')
         messages.append({"role": "user", "content": prompt})
-
-        # Check for better prompt
-        better_prompt_check = False
-        if better_prompt_check and i > 2:
-            better_prompt = require_better_prompt(primary_keywords, prompt, messages)
-            if better_prompt:
-                prompt = better_prompt
-
-        # Add image
-        add_image = False
-        if add_image:
-            image_content, already_sourced = get_image_with_commercial_usage(primary_keywords, prompt, already_sourced)
-            if image_content:
-                append_content_to_file(filepath, image_content, st if CLI else None)
-
-        # Add News
-        news_data_check = False
-        if news_data_check:
-            news_data = require_data_for_prompt(primary_keywords, prompt)
-            if news_data:
-                messages.append({"role": "assistant", "content": f"Found news on the topic: {news_data}"})
 
         model = step_to_model.get(i, 'gpt-4-turbo-preview')  # Fallback to a default model if not specified
         prompt_cost = calculate_prompt_cost(messages, model)
@@ -283,15 +251,6 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
 
         i += 1
         total_words += len(response.split(" "))
-
-    #footer_message = f"🎁  Finished generation at {datetime.datetime.now()}. 📬  Total words: {total_words}"
-    #append_content_to_file(filepath, footer_message, st if CLI else None)
-    
-    # Generate ToC
-    #toc = build_toc(filepath, keep_header_levels=2)
-    # Insert ToC at the beginning of the content
-    #payload['toc'] += toc
-    #content_with_toc = toc + "\n\n" + content
     
     # At the end of the loop, send the payload to Storyblok
     post_article_to_storyblok(payload)
@@ -306,8 +265,6 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
     with open(filepath, 'w') as file:
         #file.write(content_with_toc)
         file.write(content)
-
-
 
 def run_streamlit_app():
     st.title("📝BLOGEN v0.2 (Blog Generation Algorithm)")

@@ -115,7 +115,7 @@ steps_prompts = [
     "The bullets should have the title of the article directly with the link to the article - e.g., in markdown [title](link)."
     ,
     # Step 12
-    "Please create a meta description (100-120 characters) for the article you just generated."
+    "Please create a meta description (120-140 characters) for the article you just generated."
     ,
     # Step 13
     "Please create 5 variations of a slightly click-baity (to invite the reader to click the link), SEO-optimized title (50-60 characters) for the article below. "

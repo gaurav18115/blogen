@@ -85,6 +85,7 @@ steps_prompts = [
     "Whenever relevant include YouTube videos that explain the process, "
     "highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
+    "and include references to other websites if helpful for the user. "
     ,
     # Step 8
     "You will proceed to write the sixth point of the outline (if this point doesn't exist, simply don't respond). "

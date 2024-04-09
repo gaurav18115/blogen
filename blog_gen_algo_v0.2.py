@@ -16,16 +16,16 @@ from tokencost import calculate_prompt_cost, calculate_completion_cost
 
 # Step-to-Model Mapping: Define your model preferences here
 step_to_model = {
-    1: 'gpt-4-turbo-preview', # Outline
+    1: 'gpt-4-0125-preview', # Outline
     2: 'gpt-3.5-turbo', # Introduction
-    3: 'gpt-4-turbo-preview', # Body (...)
-    4: 'gpt-4-turbo-preview',
-    5: 'gpt-4-turbo-preview',
-    6: 'gpt-4-turbo-preview',
-    7: 'gpt-4-turbo-preview',
-    8: 'gpt-4-turbo-preview',
-    9: 'gpt-4-turbo-preview',
-    10: 'gpt-4-turbo-preview', # Conclusion
+    3: 'gpt-4-0125-preview', # Body (...)
+    4: 'gpt-4-0125-preview',
+    5: 'gpt-4-0125-preview',
+    6: 'gpt-4-0125-preview',
+    7: 'gpt-4-0125-preview',
+    8: 'gpt-4-0125-preview',
+    9: 'gpt-4-0125-preview',
+    10: 'gpt-4-0125-preview', # Conclusion
     11: 'gpt-3.5-turbo', # Related Posts
     12: 'gpt-3.5-turbo', # Meta Description
     13: 'gpt-3.5-turbo', # Title
@@ -216,7 +216,7 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
                                     )
         messages.append({"role": "user", "content": prompt})
 
-        model = step_to_model.get(i, 'gpt-4-turbo-preview')  # Fallback to a default model if not specified
+        model = step_to_model.get(i, 'gpt-4-0125-preview')  # Fallback to a default model if not specified
         prompt_cost = calculate_prompt_cost(messages, model)
         
         response = chat_with_open_ai(messages, model=model, temperature=OPENAI_TEMPERATURE)

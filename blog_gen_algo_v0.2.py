@@ -112,7 +112,7 @@ steps_prompts = [
     ,
     # Step 11
     "Please create a related posts section (with H2 heading 'Related Posts'), with two new lines after the heading. "
-    "Include 3-4 articles that are relevant to this topic out of the existing blog posts described in the sitemap below: {sitemap_urls}. "
+    "Include 3-4 articles that are the most relevant to this topic out of the existing blog posts described in the sitemap below: {sitemap_urls}. "
     "The bullets should have the title of the article directly with the link to the article - e.g., in markdown [title](link)."
     ,
     # Step 12

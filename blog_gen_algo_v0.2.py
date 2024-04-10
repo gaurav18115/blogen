@@ -1,5 +1,6 @@
 import sys
 from urllib.parse import urlparse
+import argparse
 
 import streamlit as st
 import xml.etree.ElementTree as ET
@@ -151,7 +152,7 @@ def load_sitemap_and_extract_urls(sitemap_path):
     urls = [elem.text for elem in root.findall('ns:url/ns:loc', namespace)]
     return urls
 
-def generate_blog_for_keywords(primary_keywords="knee replacement surgery", service_name=SERVICE_NAME, service_description=SERVICE_DESCRIPTION, service_url=SERVICE_URL):
+def generate_blog_for_keywords(primary_keywords="knee replacement surgery", service_name=SERVICE_NAME, service_description=SERVICE_DESCRIPTION, service_url=SERVICE_URL, post_to_storyblok=False):
     # Iterate through each example
     messages = []
     payload = {"title": "", "metadescription": "", "intro": "", "body": "", "conclusion": "", "related_posts": "", "faqs": "", "keyword": primary_keywords, "key_takeaways": "", "toc": ""}
@@ -253,19 +254,28 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
         i += 1
         total_words += len(response.split(" "))
     
-    # At the end of the loop, send the payload to Storyblok
-    post_article_to_storyblok(payload)
+    # Reassemble the content according to the new order
+    ordered_content = (
+        "Metadescription: " + payload['metadescription'] + "\n\n" +
+        "Possible titles: " + payload['title'] + "\n\n" +
+        payload['intro'] + "\n\n" +
+        payload['toc'] + "\n\n" +
+        payload['key_takeaways'] + "\n\n" +
+        payload['body'] + "\n\n" +
+        payload['conclusion'] + "\n\n" +
+        payload['related_posts'] + "\n\n" +
+        payload['faqs']
+    )
     
-    # Read the generated content
-    with open(filepath, 'r') as file:
-        content = file.read()
-    
+    # Now, instead of posting to Storyblok, first write to the file
+    with open(filepath, 'w') as file:
+        file.write(ordered_content)
+
     log_info(f'Total cost of operation: {total_cost}')
 
-    # Rewrite the file with ToC
-    with open(filepath, 'w') as file:
-        #file.write(content_with_toc)
-        file.write(content)
+    # At the end of the loop, send the payload to Storyblok
+    if post_to_storyblok:
+        post_article_to_storyblok(payload)
 
 def run_streamlit_app():
     st.title("📝BLOGEN v0.2 (Blog Generation Algorithm)")
@@ -279,26 +289,29 @@ def run_streamlit_app():
         generate_blog_for_keywords(input_text)
 
 
-def run_terminal_app(keywords):
-    generate_blog_for_keywords(keywords, SERVICE_NAME, SERVICE_DESCRIPTION, SERVICE_URL)
+def run_terminal_app(keywords, post_to_storyblok=False):
+    generate_blog_for_keywords(keywords, SERVICE_NAME, SERVICE_DESCRIPTION, SERVICE_URL,post_to_storyblok)
 
 
 if __name__ == "__main__":
     CLI = True
     setup_logger()
+    
+    # Set up argument parser
+    parser = argparse.ArgumentParser(description="Generate a blog post and optionally post to Storyblok.")
+    parser.add_argument('--storyblok', action='store_true', help="If set, post the generated content to Storyblok.")
+    parser.add_argument('keywords', metavar='keyword', type=str, nargs='+', help='Keywords for generating the blog post.')
+    
+    # Parse arguments
+    args = parser.parse_args()
+    
+    # Extract options and keywords
+    post_to_storyblok = args.storyblok
+    keywords = " ".join(args.keywords)
 
-    if CLI:
-        _keywords = " ".join(sys.argv[1:])
-        if _keywords.strip() == "":
-            print("Error: keywords not specified.\nUSAGE: python blog_gen_algo_v0.2.py <keywords>")
-        while True:
-            if _keywords.strip() == "":
-                _keywords = input("\nEnter the primary keywords:")
-            else:
-                break
-
-        log_info('Starting BLOGEN...')
-        run_terminal_app(_keywords)
-
+    log_info('Starting BLOGEN...')
+    
+    if keywords.strip() == "":
+        print("Error: No keywords specified. Please provide at least one keyword.")
     else:
-        run_streamlit_app()
+        run_terminal_app(keywords, post_to_storyblok=post_to_storyblok)

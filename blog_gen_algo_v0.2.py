@@ -1,5 +1,5 @@
-import sys
 from urllib.parse import urlparse
+from datetime import datetime
 import argparse
 
 import streamlit as st
@@ -47,8 +47,7 @@ steps_prompts = [
     "You will proceed to write the first point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
     "Make sure to follow Google's helpful content guidelines and EEAT (Experience, Expertise, Authoritativeness, and Trustworthiness) into the section creation process. "
-    "Whenever relevant include YouTube videos that explain the process, "
-    "highlight tools that can help the user, "
+    "Whenever relevant highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
     "and include references to other websites if helpful for the user. "
     ,
@@ -56,8 +55,7 @@ steps_prompts = [
     "You will proceed to write the second point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
     "Make sure to follow Google's helpful content guidelines and EEAT (Experience, Expertise, Authoritativeness, and Trustworthiness) into the section creation process. "
-    "Whenever relevant include YouTube videos that explain the process, "
-    "highlight tools that can help the user, "
+    "Whenever relevant highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
     "and include references to other websites if helpful for the user. "
     ,
@@ -65,8 +63,7 @@ steps_prompts = [
     "You will proceed to write the third point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
     "Make sure to follow Google's helpful content guidelines and EEAT (Experience, Expertise, Authoritativeness, and Trustworthiness) into the section creation process. "
-    "Whenever relevant include YouTube videos that explain the process, "
-    "highlight tools that can help the user, "
+    "Whenever relevant highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
     "and include references to other websites if helpful for the user. "
     ,
@@ -74,8 +71,7 @@ steps_prompts = [
     "You will proceed to write the fourth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
     "Make sure to follow Google's helpful content guidelines and EEAT (Experience, Expertise, Authoritativeness, and Trustworthiness) into the section creation process. "
-    "Whenever relevant include YouTube videos that explain the process, "
-    "highlight tools that can help the user, "
+    "Whenever relevant highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
     "and include references to other websites if helpful for the user. "
     ,
@@ -83,8 +79,7 @@ steps_prompts = [
     "You will proceed to write the fifth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
     "Make sure to follow Google's helpful content guidelines and EEAT (Experience, Expertise, Authoritativeness, and Trustworthiness) into the section creation process. "
-    "Whenever relevant include YouTube videos that explain the process, "
-    "highlight tools that can help the user, "
+    "Whenever relevant highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
     "and include references to other websites if helpful for the user. "
     ,
@@ -92,8 +87,7 @@ steps_prompts = [
     "You will proceed to write the sixth point of the outline (if this point doesn't exist, simply don't respond). "
     "If applicable, explain step by step how to do the required actions for the user intent in the keyword provided. "
     "Make sure to follow Google's helpful content guidelines and EEAT (Experience, Expertise, Authoritativeness, and Trustworthiness) into the section creation process. "
-    "Whenever relevant include YouTube videos that explain the process, "
-    "highlight tools that can help the user, "
+    "Whenever relevant highlight tools that can help the user, "
     "cover templates that allow the user to simply copy-paste " 
     "and include references to other websites if helpful for the user. "
     ,
@@ -191,7 +185,7 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
                         f"Use John Gruber's Markdown to format your responses, with appropriate H2 to H4 tags. Use original content, avoid plagiarism, and increase readability. "\
                         f"Avoid bullshitter talk, focus on being helpful, reliable and create people-first content to the reader, as per Google's guidelines: https://developers.google.com/search/docs/fundamentals/creating-helpful-content "\
                         f"Make sure to follow Google's helpful content guidelines and EEAT (Experience, Expertise, Authoritativeness, and Trustworthiness) into the section creation process. "\
-                        f"You explain step by step how to do the required actions for the user intent in the keyword provided. Give examples of tools and explain how to use them. Always link to their websites to ensure the credit is given to them (include the links as anchors in the most relevant words). Try to find videos on YouTube that go well with the topic. "\
+                        f"You explain step by step how to do the required actions for the user intent in the keyword provided. Give examples of tools and explain how to use them. Always link to their websites to ensure the credit is given to them (include the links as anchors in the most relevant words). "\
                         f"Use an informational tone and always reference the sources you use with the website links, including if you are referring to competitors of Emilio as we need to maximize collaboration in the network. "\
                         f"Whenever relevant, introduce Emilio (with website https//getemil.io/)and explain to the user how Emilio can help them with their problem. "\
                         f"Emilio’s is an AI-powered email client designed to save users time. Key functionalities include sorting prioritized emails, summarizing messages and digesting the inbox, drafting emails with the user's tone, and requiring no installation as it operates in the background. The service integrates with the user's existing Gmail account. "\
@@ -255,13 +249,39 @@ def generate_blog_for_keywords(primary_keywords="knee replacement surgery", serv
         total_words += len(response.split(" "))
     
     # Reassemble the content according to the new order
-    ordered_content = (
-        "Metadescription: " + payload['metadescription'] + "\n\n" +
-        "Possible titles: " + payload['title'] + "\n\n" +
-        payload['intro'] + "\n\n" +
-        payload['toc'] + "\n\n" +
+    ## Split titles string into a list of individual titles
+    titles_list = payload['title'].split(';')
+    ## Construct the titles section with HTML comment and Markdown headings
+    titles_section = "<!--- Suggested Titles / H1 (pick one each) -->\n"
+    for title in titles_list:
+        titles_section += f"# {title.strip()}\n"
+    titles_section += "\n"
+    
+    # Assemble the metadata
+    ## Assuming 'payload['title']' contains multiple titles separated by ";", choose the first one for the metadata
+    title_for_metadata = payload['title'].split(';')[0].strip()
+    ## Format the current date in YYYY-MM-DD format for the metadata
+    current_date = datetime.now().strftime("%Y-%m-%d")
+    ## Construct the metadata section
+    metadata_section = (
+        "---\n"
+        f"title: {title_for_metadata}\n"
+        f"date: {current_date}\n"
+        "authors:\n"
+        "  - name: \n"
+        "    title: \n"
+        "    picture: \n"
+        "tags: [\"1\", \"2\", \"2\", \"4\"]\n"
+        "---\n\n"
+    )
+    
+    ordered_content = (metadata_section + 
+        "<!--- Metadescription -->\n"  + payload['metadescription'] + "\n\n" +
+        titles_section + "\n" +
+        "<!--- Introduction -->\n" + payload['intro'] + "\n\n" +
+        "<!--- Table of Contents -->\n" + payload['toc'] + "\n\n" +
         payload['key_takeaways'] + "\n\n" +
-        payload['body'] + "\n\n" +
+        "<!--- Body -->\n" + payload['body'] + "\n\n" +
         payload['conclusion'] + "\n\n" +
         payload['related_posts'] + "\n\n" +
         payload['faqs']

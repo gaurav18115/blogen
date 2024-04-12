@@ -116,7 +116,7 @@ steps_prompts = [
     # Step 13
     "Please create 5 variations of a slightly click-baity (to invite the reader to click the link), SEO-optimized title (50-60 characters) for the article below. "
     "Make sure to include the problem it is solving. Avoid futuristic and corporate type of words, phrase it as an How-To or even a Question. "
-    "The title should be in the format: 'Keyword: Subtitle', but only if the keyword fits well in the title. Don't use quotes or special characters in the title. "
+    "The title should be in the format: 'Keyword - Subtitle', but only if the keyword fits well in the title. Don't use quotes or special characters in the title. "
     "Present the titles in a single line (no bullets or numbers), each separated by a semicolon."
     ,
     # Step 14

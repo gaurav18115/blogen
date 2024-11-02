@@ -5,3 +5,5 @@ _blogs
 venv
 sitemap.xml
 tools/__pycache__
+.csv
+.venv

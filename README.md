@@ -6,15 +6,20 @@ BLOGEN is a blog generation application designed to create well-structured blog 
 - [BLOGEN - Blog Generation Application (Version 0.1)](#blogen---blog-generation-application-version-01)
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
+  - [How it works](#how-it-works)
   - [Features](#features)
   - [Getting Started](#getting-started)
   - [Usage](#usage)
   - [Dependencies](#dependencies)
   - [Contributing](#contributing)
   - [License](#license)
+  - [Roadmap](#roadmap)
 
 ## Introduction
 BLOGEN is a Python-based blog generation tool that leverages the power of GPT-3.5 (OpenAI's language model) to create captivating blog posts. The application uses the primary keywords provided by the user to generate prompts and interactively calls the language model to produce content for each step of the blog creation process.
+
+## How it works
+![LF24T35](https://github.com/rbatista191/blogen/assets/138892976/421f58a7-3291-4a92-886f-99e287f905ba)
 
 ## Features
 - **Keyword-driven Content Generation**: BLOGEN accepts primary keywords as input to create blog content tailored to specific topics.
@@ -51,11 +56,11 @@ To get started with BLOGEN, follow these steps:
    
 6. Launch the BLOGEN application:
    ```
-   python blog_gen_algo_v0.1.py [keyword]
+   python blog_gen_algo_v0.2.py [keyword]
    ```
 7. Alternatively use Streamlit for a browser interface:
    ```
-   streamlit run blog_gen_algo_v0.1.py [keyword]
+   streamlit run blog_gen_algo_v0.2.py [keyword]
    ```
 
 ## Usage
@@ -80,5 +85,15 @@ BLOGEN is licensed under the [MIT License](LICENSE). Feel free to use, modify, a
 
 For any questions or feedback, please contact me at `gaurav18115@gmail.com`.
 
+## Roadmap
+- [x] Create Key Takeaway section and shorten Introduction
+- [x] Fix cost calculation by including full message instead of prompt only
+- [x] Find a way to put anchor links on headings
+- [x] Create separate table-of-content section
+- [x] Swap Intro with Key Takeaways
+- [ ] Integrate [Unsplash API](https://unsplash.com/developers) to upload the picture to CMS
+- [ ] Improve YouTube link generation
+- [ ] Create logic to check the URLs to avoid 404
+
 ---
-This README file was generated using BLOGEN (Version 0.1) - The Blog Generation Application.
+This README file was generated using BLOGEN (Version 0.2) - The Blog Generation Application.

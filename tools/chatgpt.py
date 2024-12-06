@@ -2,9 +2,10 @@ from time import sleep
 
 import openai
 
-from tools.const import OPENAI_API_KEY, OPENAI_MAX_TOKENS
+from tools.const import OPENAI_BASE_URL, OPENAI_API_KEY, OPENAI_MAX_TOKENS
 from tools.logger import log_info
 
+openai.base_url = OPENAI_BASE_URL
 openai.api_key = OPENAI_API_KEY
 
 def chat_with_open_ai(conversation, model="gpt-4-0125-preview", temperature=0):

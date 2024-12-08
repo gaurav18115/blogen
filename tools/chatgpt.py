@@ -1,27 +1,26 @@
 from time import sleep
 
-import openai
+from openai import OpenAI
 
 from tools.const import OPENAI_BASE_URL, OPENAI_API_KEY, OPENAI_MAX_TOKENS
 from tools.logger import log_info
 
-openai.base_url = OPENAI_BASE_URL
-openai.api_key = OPENAI_API_KEY
 
 def chat_with_open_ai(conversation, model="gpt-4-0125-preview", temperature=0):
+    client = OpenAI(base_url=OPENAI_BASE_URL, api_key=OPENAI_API_KEY)
     max_retry = 3
     retry = 0
     messages = [{'role': x.get('role', 'assistant'),
                  'content': x.get('content', '')} for x in conversation]
     while True:
         try:
-            response = openai.ChatCompletion.create(model=model, messages=messages, temperature=temperature)
-            text = response['choices'][0]['message']['content']
+            response = client.chat.completions.create(model=model, messages=messages, temperature=temperature)
+            text = response.choices[0].message.content
 
             # trim message object
             debug_object = [i['content'] for i in messages]
             debug_object.append(text)
-            if response['usage']['total_tokens'] >= OPENAI_MAX_TOKENS:
+            if response.usage.total_tokens >= OPENAI_MAX_TOKENS:
                 messages = split_long_messages(messages)
                 if len(messages) > 1:
                     messages.pop(1)

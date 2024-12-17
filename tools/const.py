@@ -18,6 +18,7 @@ BLOG_WRITING_TONES = [
     "Expository"
 ]
 
+OPENAI_BASE_URL = os.getenv('OPENAI_BASE_URL', 'https://api.openai.com/v1')
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', '')
 OPENAI_MAX_TOKENS = int(os.getenv('OPENAI_MAX_TOKENS', 4000))
 OPENAI_TEMPERATURE = float(os.getenv('OPENAI_TEMPERATURE', 0.9))
